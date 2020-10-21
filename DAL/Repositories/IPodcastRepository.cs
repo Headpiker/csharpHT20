@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Models;
 
 namespace DAL.Repositories
 {
-    public class EntityRepository
+    public interface IPodcastRepository<T> : IRepository<T> where T : Podcast
     {
-
-
+       
     }
 }

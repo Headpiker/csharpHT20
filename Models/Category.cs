@@ -6,16 +6,18 @@ namespace Models
 {
     public class Category : Entity
     {
-        public string Name { get; set; }
+        public string Title { get; set; }
+
+        public Category(string title)
+        {
+            Title = title;
+        }
 
         public override string EntityType()
         {
             return "Category";
         }
 
-        public Category (string name)
-        {
-            Name = name;
-        }
+
     }
 }
