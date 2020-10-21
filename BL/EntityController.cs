@@ -2,7 +2,9 @@
 
 namespace BL
 {
-    public class PodcastController
+    public class EntityController
     {
+
+
     }
 }

@@ -4,7 +4,18 @@ using System.Text;
 
 namespace Models
 {
-    class Category
+    public class Category : Entity
     {
+        public string Name { get; set; }
+
+        public override string EntityType()
+        {
+            return "Category";
+        }
+
+        public Category (string name)
+        {
+            Name = name;
+        }
     }
 }
