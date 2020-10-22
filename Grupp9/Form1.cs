@@ -14,12 +14,14 @@ namespace Grupp9
     public partial class Form1 : Form
     {
         PodcastController podcastController;
+        CategoryController categoryController;
         public Form1()
         {
             InitializeComponent();
             podcastController = new PodcastController();
-            cbKategori.Items.Add("Humor");
-            cbFrekvens.Items.Add("100");
+            categoryController = new CategoryController();
+            displayCategories();
+            displayUpdateInterval();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -36,10 +38,40 @@ namespace Grupp9
             
             int updateInterval = Convert.ToInt32(updateIntervalString);
 
-            //int updateInterval;
-            //Int32.TryParse(cbFrekvens.SelectedValue.ToString(), out updateInterval);
-            //int updateInterval = Convert.ToInt32(cbFrekvens.SelectedValue.GetHashCode());
             podcastController.CreatePodcastObject(txtPoddNamn.Text, txtUrl.Text, category, updateInterval);
+        }
+
+        private void btnNyKategori_Click(object sender, EventArgs e)
+        {
+            categoryController.CreateCategory(tbValdKategori.Text);
+            displayCategories();
+
+        }
+
+        private void displayCategories()
+        {
+            clbKategorier.Items.Clear();
+            cbKategori.Items.Clear();
+
+            foreach (var item in categoryController.RetriveAllCategories())
+            {
+                if (item != null)
+                {
+                    clbKategorier.Items.Add(item.Title);
+                    cbKategori.Items.Add(item.Title);
+                    
+                }
+
+            }
+            cbKategori.SelectedIndex = 0;
+
+        }
+        private void displayUpdateInterval()
+        {
+            cbFrekvens.Items.Add("100");
+            cbFrekvens.Items.Add("500");
+            cbFrekvens.Items.Add("600");
+            cbFrekvens.SelectedIndex = 0;
         }
     }
 }

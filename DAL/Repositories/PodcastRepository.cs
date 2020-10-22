@@ -28,6 +28,7 @@ namespace DAL.Repositories
             Save();
         }
 
+        //Kommenterat bort denna då deserialize inte fungerar..
         //public List<Podcast> GetList()
         //{
         //    List<Podcast> podcasts = new List<Podcast>();

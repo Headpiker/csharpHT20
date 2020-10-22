@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Forms;
 
 namespace DAL.Repositories
 {
@@ -25,27 +24,8 @@ namespace DAL.Repositories
 
         public void Create(Category category)
         {
-            List<Category> allCategories;
-            allCategories = GetAll();
-            Boolean exist = false;
-
-            foreach (Category categoryToCheck in allCategories)
-            {
-                if(categoryToCheck == category)
-                {
-                    exist = true;
-                }
-            }
-
-            if (exist != true)
-            {
-                categoryList.Add(category);
-                SaveChanges();
-            }
-            else
-            {
-                MessageBox.Show("Kategorin finns redan!");
-            }
+            categoryList.Add(category);
+            SaveChanges();
         }
 
         public void Delete (int index)

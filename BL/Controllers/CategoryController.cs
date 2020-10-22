@@ -7,7 +7,7 @@ using System.ServiceModel.Syndication;
 
 namespace BL.Controllers
 {
-    class CategoryController
+    public class CategoryController
     {
         private ICategoryRepository<Category> categoryRepository;
 

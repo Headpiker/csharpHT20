@@ -49,16 +49,16 @@
             this.rtbAvsnittInfo = new System.Windows.Forms.RichTextBox();
             this.btnUppdateraPodd = new System.Windows.Forms.Button();
             this.btnTaBortKategori = new System.Windows.Forms.Button();
-            this.txtValdKategori = new System.Windows.Forms.TextBox();
             this.txtPoddNamn = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.tbValdKategori = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtUrl
             // 
             this.txtUrl.Location = new System.Drawing.Point(18, 272);
-            this.txtUrl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUrl.Margin = new System.Windows.Forms.Padding(4);
             this.txtUrl.Name = "txtUrl";
             this.txtUrl.Size = new System.Drawing.Size(226, 22);
             this.txtUrl.TabIndex = 0;
@@ -68,7 +68,7 @@
             // 
             this.cbFrekvens.FormattingEnabled = true;
             this.cbFrekvens.Location = new System.Drawing.Point(281, 272);
-            this.cbFrekvens.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbFrekvens.Margin = new System.Windows.Forms.Padding(4);
             this.cbFrekvens.Name = "cbFrekvens";
             this.cbFrekvens.Size = new System.Drawing.Size(160, 24);
             this.cbFrekvens.TabIndex = 1;
@@ -77,7 +77,7 @@
             // 
             this.cbKategori.FormattingEnabled = true;
             this.cbKategori.Location = new System.Drawing.Point(462, 272);
-            this.cbKategori.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbKategori.Margin = new System.Windows.Forms.Padding(4);
             this.cbKategori.Name = "cbKategori";
             this.cbKategori.Size = new System.Drawing.Size(160, 24);
             this.cbKategori.TabIndex = 2;
@@ -121,7 +121,7 @@
             this.columnHeaderKategori});
             this.lvPodcasts.HideSelection = false;
             this.lvPodcasts.Location = new System.Drawing.Point(16, 14);
-            this.lvPodcasts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lvPodcasts.Margin = new System.Windows.Forms.Padding(4);
             this.lvPodcasts.Name = "lvPodcasts";
             this.lvPodcasts.Size = new System.Drawing.Size(607, 230);
             this.lvPodcasts.TabIndex = 6;
@@ -150,7 +150,7 @@
             // btnNyPodd
             // 
             this.btnNyPodd.Location = new System.Drawing.Point(301, 329);
-            this.btnNyPodd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNyPodd.Margin = new System.Windows.Forms.Padding(4);
             this.btnNyPodd.Name = "btnNyPodd";
             this.btnNyPodd.Size = new System.Drawing.Size(100, 28);
             this.btnNyPodd.TabIndex = 7;
@@ -161,7 +161,7 @@
             // btnTaBortPodd
             // 
             this.btnTaBortPodd.Location = new System.Drawing.Point(524, 329);
-            this.btnTaBortPodd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTaBortPodd.Margin = new System.Windows.Forms.Padding(4);
             this.btnTaBortPodd.Name = "btnTaBortPodd";
             this.btnTaBortPodd.Size = new System.Drawing.Size(100, 28);
             this.btnTaBortPodd.TabIndex = 9;
@@ -173,7 +173,7 @@
             this.lbAvsnitt.FormattingEnabled = true;
             this.lbAvsnitt.ItemHeight = 16;
             this.lbAvsnitt.Location = new System.Drawing.Point(16, 402);
-            this.lbAvsnitt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lbAvsnitt.Margin = new System.Windows.Forms.Padding(4);
             this.lbAvsnitt.Name = "lbAvsnitt";
             this.lbAvsnitt.Size = new System.Drawing.Size(607, 196);
             this.lbAvsnitt.TabIndex = 10;
@@ -192,7 +192,7 @@
             // 
             this.clbKategorier.FormattingEnabled = true;
             this.clbKategorier.Location = new System.Drawing.Point(686, 37);
-            this.clbKategorier.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.clbKategorier.Margin = new System.Windows.Forms.Padding(4);
             this.clbKategorier.Name = "clbKategorier";
             this.clbKategorier.Size = new System.Drawing.Size(482, 191);
             this.clbKategorier.TabIndex = 13;
@@ -200,17 +200,18 @@
             // btnNyKategori
             // 
             this.btnNyKategori.Location = new System.Drawing.Point(693, 302);
-            this.btnNyKategori.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNyKategori.Margin = new System.Windows.Forms.Padding(4);
             this.btnNyKategori.Name = "btnNyKategori";
             this.btnNyKategori.Size = new System.Drawing.Size(108, 28);
             this.btnNyKategori.TabIndex = 14;
             this.btnNyKategori.Text = "Ny...";
             this.btnNyKategori.UseVisualStyleBackColor = true;
+            this.btnNyKategori.Click += new System.EventHandler(this.btnNyKategori_Click);
             // 
             // btnUppdateraKategori
             // 
             this.btnUppdateraKategori.Location = new System.Drawing.Point(836, 302);
-            this.btnUppdateraKategori.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUppdateraKategori.Margin = new System.Windows.Forms.Padding(4);
             this.btnUppdateraKategori.Name = "btnUppdateraKategori";
             this.btnUppdateraKategori.Size = new System.Drawing.Size(108, 28);
             this.btnUppdateraKategori.TabIndex = 15;
@@ -220,7 +221,7 @@
             // rtbAvsnittInfo
             // 
             this.rtbAvsnittInfo.Location = new System.Drawing.Point(675, 375);
-            this.rtbAvsnittInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rtbAvsnittInfo.Margin = new System.Windows.Forms.Padding(4);
             this.rtbAvsnittInfo.Name = "rtbAvsnittInfo";
             this.rtbAvsnittInfo.ReadOnly = true;
             this.rtbAvsnittInfo.Size = new System.Drawing.Size(495, 226);
@@ -230,7 +231,7 @@
             // btnUppdateraPodd
             // 
             this.btnUppdateraPodd.Location = new System.Drawing.Point(416, 329);
-            this.btnUppdateraPodd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUppdateraPodd.Margin = new System.Windows.Forms.Padding(4);
             this.btnUppdateraPodd.Name = "btnUppdateraPodd";
             this.btnUppdateraPodd.Size = new System.Drawing.Size(100, 28);
             this.btnUppdateraPodd.TabIndex = 17;
@@ -240,27 +241,17 @@
             // btnTaBortKategori
             // 
             this.btnTaBortKategori.Location = new System.Drawing.Point(1006, 302);
-            this.btnTaBortKategori.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTaBortKategori.Margin = new System.Windows.Forms.Padding(4);
             this.btnTaBortKategori.Name = "btnTaBortKategori";
             this.btnTaBortKategori.Size = new System.Drawing.Size(100, 28);
             this.btnTaBortKategori.TabIndex = 18;
             this.btnTaBortKategori.Text = "Ta bort...";
             this.btnTaBortKategori.UseVisualStyleBackColor = true;
             // 
-            // txtValdKategori
-            // 
-            this.txtValdKategori.Location = new System.Drawing.Point(686, 270);
-            this.txtValdKategori.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtValdKategori.Name = "txtValdKategori";
-            this.txtValdKategori.ReadOnly = true;
-            this.txtValdKategori.Size = new System.Drawing.Size(482, 22);
-            this.txtValdKategori.TabIndex = 19;
-            this.txtValdKategori.Text = "Kategori:";
-            // 
             // txtPoddNamn
             // 
             this.txtPoddNamn.Location = new System.Drawing.Point(16, 329);
-            this.txtPoddNamn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPoddNamn.Margin = new System.Windows.Forms.Padding(4);
             this.txtPoddNamn.Name = "txtPoddNamn";
             this.txtPoddNamn.Size = new System.Drawing.Size(228, 22);
             this.txtPoddNamn.TabIndex = 20;
@@ -286,15 +277,22 @@
             this.label6.TabIndex = 22;
             this.label6.Text = "Podcast # : Avsnitt";
             // 
+            // tbValdKategori
+            // 
+            this.tbValdKategori.Location = new System.Drawing.Point(685, 263);
+            this.tbValdKategori.Name = "tbValdKategori";
+            this.tbValdKategori.Size = new System.Drawing.Size(482, 22);
+            this.tbValdKategori.TabIndex = 23;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1211, 623);
+            this.Controls.Add(this.tbValdKategori);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtPoddNamn);
-            this.Controls.Add(this.txtValdKategori);
             this.Controls.Add(this.btnTaBortKategori);
             this.Controls.Add(this.btnUppdateraPodd);
             this.Controls.Add(this.rtbAvsnittInfo);
@@ -312,7 +310,7 @@
             this.Controls.Add(this.cbKategori);
             this.Controls.Add(this.cbFrekvens);
             this.Controls.Add(this.txtUrl);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Prenumerera på dina favoritpodcasts";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -340,7 +338,6 @@
         private System.Windows.Forms.RichTextBox rtbAvsnittInfo;
         private System.Windows.Forms.Button btnUppdateraPodd;
         private System.Windows.Forms.Button btnTaBortKategori;
-        private System.Windows.Forms.TextBox txtValdKategori;
         private System.Windows.Forms.TextBox txtPoddNamn;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
@@ -348,6 +345,7 @@
         private System.Windows.Forms.ColumnHeader columnHeaderTitel;
         private System.Windows.Forms.ColumnHeader columnHeaderFrekvens;
         private System.Windows.Forms.ColumnHeader columnHeaderKategori;
+        private System.Windows.Forms.TextBox tbValdKategori;
     }
 }
 

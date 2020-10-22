@@ -7,8 +7,10 @@ namespace DAL.Repositories
 {
     public interface IPodcastRepository<T> : IRepository<T> where T : Podcast
     {
-        void Create(T podcast);
+        
         void Save();
+
+        //Kommenterat bort denna då deserialize inte fungerar..
         //List<T> GetList();
 
 
