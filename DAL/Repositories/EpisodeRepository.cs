@@ -15,5 +15,11 @@ namespace DAL.Repositories
             episodeList = new List<Episode>();
             dataManager = new DataManager();
         }
+        //public List<Episode> GetEpisodes()
+        //{
+        //    List<Podcast> episodes = new List<Episode>();
+
+        //    return episodes;
+        //}
     }
 }

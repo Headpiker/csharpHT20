@@ -7,8 +7,10 @@ namespace DAL.Repositories
 {
     public interface IPodcastRepository<T> : IRepository<T> where T : Podcast
     {
-        void savePodcast();
-        void createPodcast(T podcast);
+        void Create(T podcast);
+        void Save();
+        //List<T> GetList();
+
 
     }
 }

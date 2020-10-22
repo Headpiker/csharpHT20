@@ -21,22 +21,23 @@ namespace BL.Controllers
         public void CreatePodcastObject(string title, string url, string category, int updateInterval)
         {
             Podcast podcast = null;
-            if(url == "anrop till valideringsklassen här?") 
-            { 
-                podcast = new Podcast 
-                {
-                    Title = title,
-                    Url = url,
-                    Category = category,
-                    UpdateInterval = updateInterval,
-                    Episodes = getEpisodes(url)
-                };
-            }
-            podcastRepository.createPodcast(podcast);
+            //if (url == "anrop till valideringsklass för koll om URL är valid")
+
+            List<Episode> episodes = GetEpisodes(url);
+            podcast = new Podcast(title, url, category, updateInterval, episodes);
+            //podcast = new Podcast
+            //    {
+            //        Title = title,
+            //        Url = url,
+            //        Category = category,
+            //        UpdateInterval = updateInterval,
+            //        Episodes = GetEpisodes(url)
+            //    };
+            
+            podcastRepository.Create(podcast);
         }
 
-
-        public List<Episode> getEpisodes(string url)
+        public List<Episode> GetEpisodes(string url) //Ska denna vara i EpisodeController?
         {
             XmlReader rssReader = XmlReader.Create(url);
             SyndicationFeed rssFeed = SyndicationFeed.Load(rssReader);
