@@ -4,11 +4,16 @@ using System.Text;
 
 namespace Models
 {
-    public class Entity
+    public abstract class Entity
     {
         public virtual string EntityType()
         {
-            return "Type";
+            return "Entity";
+        }
+
+        public Entity()
+        {
+
         }
     }
 }

@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DAL.Repositories
+namespace BL.Controllers
 {
-    public class EntityRepository
+    class CategoryController
     {
-
-
     }
 }
