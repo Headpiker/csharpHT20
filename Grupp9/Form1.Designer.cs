@@ -28,55 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.txtUrl = new System.Windows.Forms.TextBox();
+            this.cbFrekvens = new System.Windows.Forms.ComboBox();
+            this.cbKategori = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lvPodcasts = new System.Windows.Forms.ListView();
+            this.btnNyPodd = new System.Windows.Forms.Button();
+            this.btnTaBortPodd = new System.Windows.Forms.Button();
+            this.lbAvsnitt = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.clbKategorier = new System.Windows.Forms.CheckedListBox();
+            this.btnNyKategori = new System.Windows.Forms.Button();
+            this.btnUppdateraKategori = new System.Windows.Forms.Button();
+            this.rtbAvsnittInfo = new System.Windows.Forms.RichTextBox();
+            this.btnUppdateraPodd = new System.Windows.Forms.Button();
+            this.btnTaBortKategori = new System.Windows.Forms.Button();
+            this.txtValdKategori = new System.Windows.Forms.TextBox();
+            this.txtPoddNamn = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.columnAntalAvsnitt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderTitel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderFrekvens = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderKategori = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtUrl
             // 
-            this.textBox1.Location = new System.Drawing.Point(20, 340);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(254, 26);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "URL://";
+            this.txtUrl.Location = new System.Drawing.Point(20, 340);
+            this.txtUrl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtUrl.Name = "txtUrl";
+            this.txtUrl.Size = new System.Drawing.Size(254, 26);
+            this.txtUrl.TabIndex = 0;
+            this.txtUrl.Text = "URL://";
             // 
-            // comboBox1
+            // cbFrekvens
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(316, 340);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(180, 28);
-            this.comboBox1.TabIndex = 1;
+            this.cbFrekvens.FormattingEnabled = true;
+            this.cbFrekvens.Location = new System.Drawing.Point(316, 340);
+            this.cbFrekvens.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbFrekvens.Name = "cbFrekvens";
+            this.cbFrekvens.Size = new System.Drawing.Size(180, 28);
+            this.cbFrekvens.TabIndex = 1;
             // 
-            // comboBox2
+            // cbKategori
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(520, 340);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(180, 28);
-            this.comboBox2.TabIndex = 2;
+            this.cbKategori.FormattingEnabled = true;
+            this.cbKategori.Location = new System.Drawing.Point(520, 340);
+            this.cbKategori.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbKategori.Name = "cbKategori";
+            this.cbKategori.Size = new System.Drawing.Size(180, 28);
+            this.cbKategori.TabIndex = 2;
             // 
             // label1
             // 
@@ -108,45 +112,51 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Kategori";
             // 
-            // listView1
+            // lvPodcasts
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(18, 18);
-            this.listView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(682, 286);
-            this.listView1.TabIndex = 6;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.lvPodcasts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnAntalAvsnitt,
+            this.columnHeaderTitel,
+            this.columnHeaderFrekvens,
+            this.columnHeaderKategori});
+            this.lvPodcasts.HideSelection = false;
+            this.lvPodcasts.Location = new System.Drawing.Point(18, 18);
+            this.lvPodcasts.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lvPodcasts.Name = "lvPodcasts";
+            this.lvPodcasts.Size = new System.Drawing.Size(682, 286);
+            this.lvPodcasts.TabIndex = 6;
+            this.lvPodcasts.UseCompatibleStateImageBehavior = false;
+            this.lvPodcasts.View = System.Windows.Forms.View.Details;
             // 
-            // button1
+            // btnNyPodd
             // 
-            this.button1.Location = new System.Drawing.Point(339, 411);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 35);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Ny...";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnNyPodd.Location = new System.Drawing.Point(339, 411);
+            this.btnNyPodd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnNyPodd.Name = "btnNyPodd";
+            this.btnNyPodd.Size = new System.Drawing.Size(112, 35);
+            this.btnNyPodd.TabIndex = 7;
+            this.btnNyPodd.Text = "Ny...";
+            this.btnNyPodd.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnTaBortPodd
             // 
-            this.button3.Location = new System.Drawing.Point(590, 411);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(112, 35);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Ta bort...";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnTaBortPodd.Location = new System.Drawing.Point(590, 411);
+            this.btnTaBortPodd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnTaBortPodd.Name = "btnTaBortPodd";
+            this.btnTaBortPodd.Size = new System.Drawing.Size(112, 35);
+            this.btnTaBortPodd.TabIndex = 9;
+            this.btnTaBortPodd.Text = "Ta bort...";
+            this.btnTaBortPodd.UseVisualStyleBackColor = true;
             // 
-            // listBox1
+            // lbAvsnitt
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(18, 503);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(682, 284);
-            this.listBox1.TabIndex = 10;
+            this.lbAvsnitt.FormattingEnabled = true;
+            this.lbAvsnitt.ItemHeight = 20;
+            this.lbAvsnitt.Location = new System.Drawing.Point(18, 503);
+            this.lbAvsnitt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lbAvsnitt.Name = "lbAvsnitt";
+            this.lbAvsnitt.Size = new System.Drawing.Size(682, 244);
+            this.lbAvsnitt.TabIndex = 10;
             // 
             // label4
             // 
@@ -158,81 +168,83 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "Kategorier";
             // 
-            // checkedListBox1
+            // clbKategorier
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(772, 46);
-            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(542, 257);
-            this.checkedListBox1.TabIndex = 13;
+            this.clbKategorier.FormattingEnabled = true;
+            this.clbKategorier.Location = new System.Drawing.Point(772, 46);
+            this.clbKategorier.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.clbKategorier.Name = "clbKategorier";
+            this.clbKategorier.Size = new System.Drawing.Size(542, 257);
+            this.clbKategorier.TabIndex = 13;
             // 
-            // button4
+            // btnNyKategori
             // 
-            this.button4.Location = new System.Drawing.Point(780, 378);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(122, 35);
-            this.button4.TabIndex = 14;
-            this.button4.Text = "Ny...";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnNyKategori.Location = new System.Drawing.Point(780, 378);
+            this.btnNyKategori.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnNyKategori.Name = "btnNyKategori";
+            this.btnNyKategori.Size = new System.Drawing.Size(122, 35);
+            this.btnNyKategori.TabIndex = 14;
+            this.btnNyKategori.Text = "Ny...";
+            this.btnNyKategori.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // btnUppdateraKategori
             // 
-            this.button5.Location = new System.Drawing.Point(940, 378);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(122, 35);
-            this.button5.TabIndex = 15;
-            this.button5.Text = "Uppdatera";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnUppdateraKategori.Location = new System.Drawing.Point(940, 378);
+            this.btnUppdateraKategori.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnUppdateraKategori.Name = "btnUppdateraKategori";
+            this.btnUppdateraKategori.Size = new System.Drawing.Size(122, 35);
+            this.btnUppdateraKategori.TabIndex = 15;
+            this.btnUppdateraKategori.Text = "Uppdatera";
+            this.btnUppdateraKategori.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // rtbAvsnittInfo
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(759, 463);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(556, 324);
-            this.richTextBox1.TabIndex = 16;
-            this.richTextBox1.Text = "";
+            this.rtbAvsnittInfo.Location = new System.Drawing.Point(759, 469);
+            this.rtbAvsnittInfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rtbAvsnittInfo.Name = "rtbAvsnittInfo";
+            this.rtbAvsnittInfo.ReadOnly = true;
+            this.rtbAvsnittInfo.Size = new System.Drawing.Size(556, 282);
+            this.rtbAvsnittInfo.TabIndex = 16;
+            this.rtbAvsnittInfo.Text = "";
             // 
-            // button2
+            // btnUppdateraPodd
             // 
-            this.button2.Location = new System.Drawing.Point(468, 411);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(112, 35);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "Uppdatera";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnUppdateraPodd.Location = new System.Drawing.Point(468, 411);
+            this.btnUppdateraPodd.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnUppdateraPodd.Name = "btnUppdateraPodd";
+            this.btnUppdateraPodd.Size = new System.Drawing.Size(112, 35);
+            this.btnUppdateraPodd.TabIndex = 17;
+            this.btnUppdateraPodd.Text = "Uppdatera";
+            this.btnUppdateraPodd.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // btnTaBortKategori
             // 
-            this.button6.Location = new System.Drawing.Point(1132, 378);
-            this.button6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(112, 35);
-            this.button6.TabIndex = 18;
-            this.button6.Text = "Ta bort...";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnTaBortKategori.Location = new System.Drawing.Point(1132, 378);
+            this.btnTaBortKategori.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnTaBortKategori.Name = "btnTaBortKategori";
+            this.btnTaBortKategori.Size = new System.Drawing.Size(112, 35);
+            this.btnTaBortKategori.TabIndex = 18;
+            this.btnTaBortKategori.Text = "Ta bort...";
+            this.btnTaBortKategori.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // txtValdKategori
             // 
-            this.textBox2.Location = new System.Drawing.Point(772, 337);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(542, 26);
-            this.textBox2.TabIndex = 19;
-            this.textBox2.Text = "Kategori:";
+            this.txtValdKategori.Location = new System.Drawing.Point(772, 337);
+            this.txtValdKategori.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtValdKategori.Name = "txtValdKategori";
+            this.txtValdKategori.ReadOnly = true;
+            this.txtValdKategori.Size = new System.Drawing.Size(542, 26);
+            this.txtValdKategori.TabIndex = 19;
+            this.txtValdKategori.Text = "Kategori:";
             // 
-            // textBox3
+            // txtPoddNamn
             // 
-            this.textBox3.Location = new System.Drawing.Point(18, 411);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(256, 26);
-            this.textBox3.TabIndex = 20;
-            this.textBox3.Text = "Namn på podcast:";
+            this.txtPoddNamn.Location = new System.Drawing.Point(18, 411);
+            this.txtPoddNamn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtPoddNamn.Name = "txtPoddNamn";
+            this.txtPoddNamn.Size = new System.Drawing.Size(256, 26);
+            this.txtPoddNamn.TabIndex = 20;
+            this.txtPoddNamn.Text = "Namn på podcast:";
             // 
             // label5
             // 
@@ -254,32 +266,51 @@
             this.label6.TabIndex = 22;
             this.label6.Text = "Podcast # : Avsnitt";
             // 
+            // columnAntalAvsnitt
+            // 
+            this.columnAntalAvsnitt.Text = "Avsnitt";
+            // 
+            // columnHeaderTitel
+            // 
+            this.columnHeaderTitel.Text = "Titel";
+            this.columnHeaderTitel.Width = 240;
+            // 
+            // columnHeaderFrekvens
+            // 
+            this.columnHeaderFrekvens.Text = "Frekvens";
+            this.columnHeaderFrekvens.Width = 120;
+            // 
+            // columnHeaderKategori
+            // 
+            this.columnHeaderKategori.Text = "Kategori";
+            this.columnHeaderKategori.Width = 120;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1362, 834);
+            this.ClientSize = new System.Drawing.Size(1362, 779);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.txtPoddNamn);
+            this.Controls.Add(this.txtValdKategori);
+            this.Controls.Add(this.btnTaBortKategori);
+            this.Controls.Add(this.btnUppdateraPodd);
+            this.Controls.Add(this.rtbAvsnittInfo);
+            this.Controls.Add(this.btnUppdateraKategori);
+            this.Controls.Add(this.btnNyKategori);
+            this.Controls.Add(this.clbKategorier);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.lbAvsnitt);
+            this.Controls.Add(this.btnTaBortPodd);
+            this.Controls.Add(this.btnNyPodd);
+            this.Controls.Add(this.lvPodcasts);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.cbKategori);
+            this.Controls.Add(this.cbFrekvens);
+            this.Controls.Add(this.txtUrl);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Prenumerera på dina favoritpodcasts";
@@ -291,27 +322,31 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox txtUrl;
+        private System.Windows.Forms.ComboBox cbFrekvens;
+        private System.Windows.Forms.ComboBox cbKategori;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListView lvPodcasts;
+        private System.Windows.Forms.Button btnNyPodd;
+        private System.Windows.Forms.Button btnTaBortPodd;
+        private System.Windows.Forms.ListBox lbAvsnitt;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.CheckedListBox clbKategorier;
+        private System.Windows.Forms.Button btnNyKategori;
+        private System.Windows.Forms.Button btnUppdateraKategori;
+        private System.Windows.Forms.RichTextBox rtbAvsnittInfo;
+        private System.Windows.Forms.Button btnUppdateraPodd;
+        private System.Windows.Forms.Button btnTaBortKategori;
+        private System.Windows.Forms.TextBox txtValdKategori;
+        private System.Windows.Forms.TextBox txtPoddNamn;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ColumnHeader columnAntalAvsnitt;
+        private System.Windows.Forms.ColumnHeader columnHeaderTitel;
+        private System.Windows.Forms.ColumnHeader columnHeaderFrekvens;
+        private System.Windows.Forms.ColumnHeader columnHeaderKategori;
     }
 }
 
