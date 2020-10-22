@@ -9,10 +9,7 @@ namespace DAL.Repositories
     {
         
         void Save();
-
-        //Kommenterat bort denna då deserialize inte fungerar..
-        //List<T> GetList();
-
+        List<Podcast> GetAll();
 
     }
 }

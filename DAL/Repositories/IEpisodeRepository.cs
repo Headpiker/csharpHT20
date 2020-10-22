@@ -7,6 +7,6 @@ namespace DAL.Repositories
 {
     public interface IEpisodeRepository<T> where T : Episode
     {
-        //List<T> GetEpisodes();
+        
     }
 }

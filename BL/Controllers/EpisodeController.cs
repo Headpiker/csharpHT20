@@ -1,10 +1,22 @@
-﻿using System;
+﻿using DAL.Repositories;
+using Models;
+using System;
 using System.Collections.Generic;
+using System.ServiceModel.Syndication;
 using System.Text;
+using System.Xml;
 
 namespace BL.Controllers
 {
-    class EpisodeController
+    public class EpisodeController
     {
+
+        private IEpisodeRepository<Episode> episodeRepository;
+
+        public EpisodeController()
+        {
+            episodeRepository = new EpisodeRepository();
+        }
+
     }
 }

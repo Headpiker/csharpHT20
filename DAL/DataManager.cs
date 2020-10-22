@@ -13,14 +13,14 @@ namespace DAL
             try
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(podcasts.GetType());
-                using (FileStream Outfile = new FileStream("Podcast.xml", FileMode.Create, FileAccess.Write))
+                using (FileStream Outfile = new FileStream("Podcasts.xml", FileMode.Create, FileAccess.Write))
                 {
                     xmlSerializer.Serialize(Outfile, podcasts);
                 }
             }
             catch (Exception)
             {
-                throw new SerializerException("Podcast.xml", "Didn't work");
+                throw new SerializerException("Podcasts.xml", "Didn't work");
             }
         }
 
@@ -31,7 +31,7 @@ namespace DAL
 
                 List<Podcast> podcastsToBeReturned;
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
-                using (FileStream inFile = new FileStream("Podcast.xml", FileMode.Open, FileAccess.Read))
+                using (FileStream inFile = new FileStream("Podcasts.xml", FileMode.Open, FileAccess.Read))
                 {
                     podcastsToBeReturned = (List<Podcast>)xmlSerializer.Deserialize(inFile);
                 }
@@ -40,7 +40,7 @@ namespace DAL
             }
             catch (Exception)
             {
-                throw new SerializerException("Podcast.xml", "Didn't work..");
+                throw new SerializerException("Podcasts.xml", "Didn't work..");
             }
         }
     }

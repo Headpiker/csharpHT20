@@ -6,5 +6,18 @@ namespace BL
 {
     class Validation
     {
+
+        public static bool IsUrlValid(string url)
+        {
+            if (url.StartsWith("https://"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

@@ -10,20 +10,20 @@ namespace Models
         public string Url { get; set; }
         public string Category { get; set; }
         public int UpdateInterval { get; set; }
-        public List<Episode> Episodes { get; set; }
+        //public List<Episode> Episodes { get; set; }
 
         public override string EntityType()
         {
             return "Podcast";
         }
 
-        public Podcast(string title, string url, string category, int updateInterval, List<Episode> episodes)
+        public Podcast(string title, string url, string category, int updateInterval /* , List<Episode> episodes */)
         {
             Title = title;
             Url = url;
             Category = category;
             UpdateInterval = updateInterval;
-            Episodes = episodes;
+            //Episodes = episodes;
         }
 
             public Podcast()

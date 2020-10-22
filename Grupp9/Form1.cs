@@ -22,6 +22,7 @@ namespace Grupp9
             categoryController = new CategoryController();
             displayCategories();
             displayUpdateInterval();
+            displayPodcasts();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -32,13 +33,12 @@ namespace Grupp9
         private void btnNyPodd_Click(object sender, EventArgs e)
         {
             string category = this.cbKategori.GetItemText(this.cbKategori.SelectedItem);
-            
-
             string updateIntervalString = this.cbFrekvens.GetItemText(this.cbFrekvens.SelectedItem);
-            
             int updateInterval = Convert.ToInt32(updateIntervalString);
 
             podcastController.CreatePodcastObject(txtPoddNamn.Text, txtUrl.Text, category, updateInterval);
+
+            displayPodcasts();
         }
 
         private void btnNyKategori_Click(object sender, EventArgs e)
@@ -47,7 +47,18 @@ namespace Grupp9
             displayCategories();
 
         }
-
+        private void displayPodcasts()
+        {
+            lvPodcasts.Items.Clear();
+            foreach (var item in podcastController.RetriveAllPodcasts())
+            {
+                if(item != null)
+                {
+                    lvPodcasts.Items.Add(item.Title);
+                    lvPodcasts.Items.Add(item.Category);
+                }
+            }
+        }
         private void displayCategories()
         {
             clbKategorier.Items.Clear();
