@@ -7,7 +7,7 @@ using System.ServiceModel.Syndication;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace BL
+namespace BL.Controllers
 {
     public class PodcastController
     {

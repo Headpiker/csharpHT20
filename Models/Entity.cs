@@ -8,7 +8,7 @@ namespace Models
     {
         public virtual string EntityType()
         {
-            return "Type";
+            return "Entity";
         }
 
         public Entity()

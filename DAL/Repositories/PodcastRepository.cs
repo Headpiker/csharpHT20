@@ -17,15 +17,16 @@ namespace DAL.Repositories
             podcastList = getPodcasts();
         }
 
-        public void save()
+        public void savePodcast()
         {
+            
             dataManager.Serialize(podcastList);
         }
 
         public void createPodcast(Podcast podcast)
         {
             podcastList.Add(podcast);
-            save();
+            savePodcast();
         }
 
         public List<Podcast> getPodcasts()

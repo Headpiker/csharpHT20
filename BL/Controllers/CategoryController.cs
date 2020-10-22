@@ -2,13 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DAL.Repositories
+namespace BL.Controllers
 {
-    public interface IRepository<T> where T : class
+    class CategoryController
     {
-
-
-
     }
-    
 }
