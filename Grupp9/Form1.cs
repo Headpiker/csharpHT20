@@ -34,27 +34,17 @@ namespace Grupp9
 
         private void btnNyPodd_Click(object sender, EventArgs e)
         {
-            //Här fungerar syndication
-           /* XmlReader rssReader = XmlReader.Create("https://www.svt.se/nyheter/rss.xml");
 
-            SyndicationFeed rssFeed = SyndicationFeed.Load(rssReader);
-
-            string podcastTitle = rssFeed.Title.Text;
-            string podcastDescription = rssFeed.Description.Text;
-
-            Console.WriteLine(podcastTitle);
-            Console.WriteLine(podcastDescription);*/
-
-            podcastController.test();
+            //podcastController.test();
 
             //Min ursprungliga kod:
-            /*
+            
             string category = this.cbKategori.GetItemText(this.cbKategori.SelectedItem);
             string updateIntervalString = this.cbFrekvens.GetItemText(this.cbFrekvens.SelectedItem);
             int updateInterval = Convert.ToInt32(updateIntervalString);
             podcastController.CreatePodcastObject(txtPoddNamn.Text.ToString(), txtUrl.Text.ToString(), category, updateInterval);
             displayPodcasts();
-            */
+            
         }
 
         private void btnNyKategori_Click(object sender, EventArgs e)
