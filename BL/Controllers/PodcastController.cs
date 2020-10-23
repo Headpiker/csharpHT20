@@ -7,6 +7,7 @@ using System.ServiceModel.Syndication;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using System.Net.Http;
+using System.Linq;
 
 namespace BL.Controllers
 {
@@ -21,12 +22,15 @@ namespace BL.Controllers
 
         public void CreatePodcastObject(string title, string url, string category, int updateInterval)
         {
-            //List<Episode> episodes = GetEpisodes(url);
-            Podcast podcast = new Podcast(title, url, category, updateInterval /*, episodes*/);
+            if (Validation.IsUrlValid(url))
+            { 
+                //List<Episode> episodes = GetEpisodes(url);
+                Podcast podcast = new Podcast(title, url, category, updateInterval/* , episodes */);
 
-            podcastRepository.Create(podcast);
+                podcastRepository.Create(podcast);
+            }
         }
-        public List<Episode> GetEpisodes(string url)
+            public List<Episode> GetEpisodes(string url)
         {
             XmlReader rssReader = XmlReader.Create(url);
             SyndicationFeed rssFeed = SyndicationFeed.Load(rssReader);

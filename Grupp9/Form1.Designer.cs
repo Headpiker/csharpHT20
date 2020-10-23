@@ -130,21 +130,22 @@
             // columnAntalAvsnitt
             // 
             this.columnAntalAvsnitt.Text = "Avsnitt";
+            this.columnAntalAvsnitt.Width = 70;
             // 
             // columnHeaderTitel
             // 
             this.columnHeaderTitel.Text = "Titel";
-            this.columnHeaderTitel.Width = 240;
+            this.columnHeaderTitel.Width = 200;
             // 
             // columnHeaderFrekvens
             // 
             this.columnHeaderFrekvens.Text = "Frekvens";
-            this.columnHeaderFrekvens.Width = 120;
+            this.columnHeaderFrekvens.Width = 80;
             // 
             // columnHeaderKategori
             // 
             this.columnHeaderKategori.Text = "Kategori";
-            this.columnHeaderKategori.Width = 120;
+            this.columnHeaderKategori.Width = 100;
             // 
             // btnNyPodd
             // 

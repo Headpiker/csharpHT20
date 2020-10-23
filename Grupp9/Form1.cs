@@ -50,12 +50,16 @@ namespace Grupp9
         private void displayPodcasts()
         {
             lvPodcasts.Items.Clear();
+            
             foreach (var item in podcastController.GetAllPodcasts())
             {
                 if(item != null)
                 {
-                    lvPodcasts.Items.Add(item.Title);
-                    lvPodcasts.Items.Add(item.Category);
+                    ListViewItem newList = new ListViewItem("Antal"); //Hårdkodat just nu
+                    newList.SubItems.Add(item.Title);
+                    newList.SubItems.Add(item.UpdateInterval.ToString());
+                    newList.SubItems.Add(item.Category);
+                    lvPodcasts.Items.Add(newList);
                 }
             }
         }

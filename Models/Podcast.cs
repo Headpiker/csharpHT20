@@ -17,7 +17,7 @@ namespace Models
             return "Podcast";
         }
 
-        public Podcast(string title, string url, string category, int updateInterval /* , List<Episode> episodes */)
+        public Podcast(string title, string url, string category, int updateInterval/*, List<Episode> episodes */)
         {
             Title = title;
             Url = url;
