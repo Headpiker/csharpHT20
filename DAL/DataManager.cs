@@ -8,7 +8,7 @@ namespace DAL
 {
     public class DataManager
     {
-        public void Serialize(List<Podcast> podcasts)
+        public void SerializePodcast(List<Podcast> podcasts)
         {
             try
             {
@@ -20,11 +20,11 @@ namespace DAL
             }
             catch (Exception)
             {
-                throw new SerializerException("Persons.xml", "Didn't work");
+                throw new SerializerException("Podcasts.xml", "Didn't work");
             }
         }
 
-        public List<Podcast> Deserialize()
+        public List<Podcast> DeserializePodcast()
         {
             try
             {
@@ -40,7 +40,41 @@ namespace DAL
             }
             catch (Exception)
             {
-                throw new SerializerException("Podcast.xml", "Didn't work..");
+                throw new SerializerException("Podcasts.xml", "Didn't work..");
+            }
+        }
+
+        public void SerializeCategory(List<Category> categories)
+        {
+            try
+            {
+                XmlSerializer xmlSerializer = new XmlSerializer(categories.GetType());
+                using (FileStream outFile = new FileStream("Categories.xml", FileMode.Create, FileAccess.Write))
+                {
+                    xmlSerializer.Serialize(outFile, categories);
+                }
+            }
+            catch (Exception)
+            {
+                throw new SerializerException("Categories.xml", "Could not serialize!");
+            }
+        }
+
+        public List<Category> DeserializeCategory()
+        {
+            try
+            {
+                List<Category> categoryListToBeReturned;
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Category>));
+                using (FileStream inFile = new FileStream("Categories.xml", FileMode.Open, FileAccess.Read))
+                {
+                    categoryListToBeReturned = (List<Category>)xmlSerializer.Deserialize(inFile);
+                }
+                return categoryListToBeReturned;
+            }
+            catch (Exception)
+            {
+                throw new SerializerException("Categories.xml", "Could not deserialize!");
             }
         }
     }

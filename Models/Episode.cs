@@ -13,5 +13,10 @@ namespace Models
         {
             return "Episode";
         }
+
+        public Episode()
+        {
+
+        }
     }
 }

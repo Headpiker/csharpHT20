@@ -13,11 +13,16 @@ namespace Models
             Title = title;
         }
 
-        public override string EntityType()
-        {
-            return "Category";
-        }
 
+        public override string EntityType()
+            {
+                return "Category";
+            }
+
+        public Category()
+        {
+            
+        }
 
     }
 }

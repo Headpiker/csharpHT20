@@ -2,75 +2,55 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Forms;
 
 namespace DAL.Repositories
 {
     public class CategoryRepository : ICategoryRepository<Category>
     {
-        DataManagerCategory dataManager;
+        DataManager dataManager;
         List<Category> categoryList;
 
         public CategoryRepository()
         {
             categoryList = new List<Category>();
-            dataManager = new DataManagerCategory();
-            categoryList = GetAll();
+            dataManager = new DataManager();
+            categoryList = GetList();
         }
 
         public int GetIndex(string title)
         {
-            return GetAll().FindIndex(e => e.Title.Equals(title));
+            return GetList().FindIndex(e => e.Title.Equals(title));
         }
 
         public void Create(Category category)
         {
-            List<Category> allCategories;
-            allCategories = GetAll();
-            Boolean exist = false;
-
-            foreach (Category categoryToCheck in allCategories)
-            {
-                if(categoryToCheck == category)
-                {
-                    exist = true;
-                }
-            }
-
-            if (exist != true)
-            {
-                categoryList.Add(category);
-                SaveChanges();
-            }
-            else
-            {
-                MessageBox.Show("Kategorin finns redan!");
-            }
+            categoryList.Add(category);
+            Save();
         }
 
         public void Delete (int index)
         {
             categoryList.RemoveAt(index);
-            SaveChanges();
+            Save();
         }
 
-        public List<Category> GetAll()
+        public List<Category> GetList()
         {
-            List<Category> categoryListToBeReturned = new List<Category>();
+            List<Category> categoryList = new List<Category>();
             try
             {
-                categoryListToBeReturned = dataManager.Deserialize();
+                categoryList = dataManager.DeserializeCategory();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message + "Kunde inte hämta kategorier");
             }
-            return categoryListToBeReturned;
+            return categoryList;
         }
 
-        public void SaveChanges()
+        public void Save()
         {
-            dataManager.Serialize(categoryList);
+            dataManager.SerializeCategory(categoryList);
         }
 
         public void Update(int index, Category category)
@@ -79,7 +59,7 @@ namespace DAL.Repositories
             {
                 categoryList[index] = category;
             }
-            SaveChanges();
+            Save();
         }
     }
 }

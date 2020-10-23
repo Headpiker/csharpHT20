@@ -14,26 +14,38 @@ namespace DAL.Repositories
         {
             podcastList = new List<Podcast>();
             dataManager = new DataManager();
-            podcastList = getPodcasts();
+            podcastList = GetList();
         }
 
-        public void savePodcast()
-        {
-            
-            dataManager.Serialize(podcastList);
+        public void Save()
+        {  
+            dataManager.SerializePodcast(podcastList);
         }
 
-        public void createPodcast(Podcast podcast)
+        public void Create(Podcast podcast)
         {
             podcastList.Add(podcast);
-            savePodcast();
+            Save();
         }
 
-        public List<Podcast> getPodcasts()
+        public void Delete(int index)
         {
-            List<Podcast> podcasts = new List<Podcast>();
-            podcasts = dataManager.Deserialize();
-            return podcasts;
+            podcastList.RemoveAt(index);
+            Save();
+        }
+
+        public List<Podcast> GetList()
+        {
+            List<Podcast> podcastList = new List<Podcast>();
+            try
+            {
+                podcastList = dataManager.DeserializePodcast();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + "Kunde inte hämta podcasts");
+            }
+            return podcastList;
         }
 
     }

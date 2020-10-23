@@ -14,6 +14,8 @@ namespace DAL.Repositories
         {
             episodeList = new List<Episode>();
             dataManager = new DataManager();
+            
         }
+
     }
 }
