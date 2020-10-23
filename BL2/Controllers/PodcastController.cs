@@ -1,5 +1,4 @@
 ﻿using System;
-using DAL.Repositories;
 using Models;
 using System.Threading.Tasks;
 using System.Xml;
@@ -7,6 +6,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Linq;
 using System.ServiceModel.Syndication;
+using DAL.Repositories;
 
 namespace BL.Controllers
 {

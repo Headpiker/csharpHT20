@@ -45,7 +45,7 @@ namespace Grupp9
             Console.WriteLine(podcastTitle);
             Console.WriteLine(podcastDescription);*/
 
-            podcastController.CreatePodcastObject2();
+            podcastController.test();
 
             //Min ursprungliga kod:
             /*
