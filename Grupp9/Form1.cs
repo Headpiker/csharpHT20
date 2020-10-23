@@ -5,9 +5,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.ServiceModel.Syndication;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Grupp9
 {
@@ -32,13 +34,27 @@ namespace Grupp9
 
         private void btnNyPodd_Click(object sender, EventArgs e)
         {
+            //Här fungerar syndication
+           /* XmlReader rssReader = XmlReader.Create("https://www.svt.se/nyheter/rss.xml");
+
+            SyndicationFeed rssFeed = SyndicationFeed.Load(rssReader);
+
+            string podcastTitle = rssFeed.Title.Text;
+            string podcastDescription = rssFeed.Description.Text;
+
+            Console.WriteLine(podcastTitle);
+            Console.WriteLine(podcastDescription);*/
+
+            podcastController.CreatePodcastObject2();
+
+            //Min ursprungliga kod:
+            /*
             string category = this.cbKategori.GetItemText(this.cbKategori.SelectedItem);
             string updateIntervalString = this.cbFrekvens.GetItemText(this.cbFrekvens.SelectedItem);
             int updateInterval = Convert.ToInt32(updateIntervalString);
-
-            podcastController.CreatePodcastObject(txtPoddNamn.Text, txtUrl.Text, category, updateInterval);
-
+            podcastController.CreatePodcastObject(txtPoddNamn.Text.ToString(), txtUrl.Text.ToString(), category, updateInterval);
             displayPodcasts();
+            */
         }
 
         private void btnNyKategori_Click(object sender, EventArgs e)
