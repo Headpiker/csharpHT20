@@ -13,31 +13,21 @@ namespace BL.Controllers
     public class PodcastController
     {
         private IPodcastRepository<Podcast> podcastRepository;
+        private EpisodeController episodeController;
 
         public PodcastController()
         {
             podcastRepository = new PodcastRepository();
+            episodeController = new EpisodeController();
         }
         public void CreatePodcastObject(string title, string url, string category, int updateInterval)
         {
-                List<Episode> episodes = GetEpisodes(url);
-                Podcast podcast = new Podcast(title, url, category, updateInterval, episodes);
-                podcastRepository.Create(podcast);   
-        }
-        public List<Episode> GetEpisodes(string url)
-        {
-            XmlReader rssReader = XmlReader.Create(url);
-            SyndicationFeed rssFeed = SyndicationFeed.Load(rssReader);
-
-            List<Episode> episodes = new List<Episode>();
-            foreach (SyndicationItem item in rssFeed.Items)
+            if (Validation.IsUrlValid(url)) 
             {
-                Episode episode = new Episode();
-                episode.Title = item.Title.Text;
-                episode.Description = item.Summary.Text;
-                episodes.Add(episode);
+                List<Episode> episodes = episodeController.GetEpisodes(url);
+                Podcast podcast = new Podcast(title, url, category, updateInterval, episodes);
+                podcastRepository.Create(podcast);
             }
-            return episodes;
         }
 
         public List<Podcast> GetAllPodcasts()

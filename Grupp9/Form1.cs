@@ -25,6 +25,7 @@ namespace Grupp9
             displayCategories();
             displayUpdateInterval();
             displayPodcasts();
+            lvPodcasts.FullRowSelect = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
