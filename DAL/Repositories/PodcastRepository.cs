@@ -14,7 +14,7 @@ namespace DAL.Repositories
         {
             podcastList = new List<Podcast>();
             dataManager = new DataManager();
-            podcastList = GetAll();
+            podcastList = GetList();
         }
 
         public void Save()
@@ -26,20 +26,26 @@ namespace DAL.Repositories
         {
             podcastList.Add(podcast);
             Save();
-        }        
+        }
 
-        public List<Podcast> GetAll()
+        public void Delete(int index)
         {
-            List<Podcast> podcastListToBeReturned = new List<Podcast>();
+            podcastList.RemoveAt(index);
+            Save();
+        }
+
+        public List<Podcast> GetList()
+        {
+            List<Podcast> podcastList = new List<Podcast>();
             try
             {
-                podcastListToBeReturned = dataManager.DeserializePodcast();
+                podcastList = dataManager.DeserializePodcast();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message + "Kunde inte hämta podcasts");
             }
-            return podcastListToBeReturned;
+            return podcastList;
         }
 
     }

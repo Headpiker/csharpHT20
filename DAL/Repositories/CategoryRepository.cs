@@ -7,50 +7,50 @@ namespace DAL.Repositories
 {
     public class CategoryRepository : ICategoryRepository<Category>
     {
-        DataManagerCategory dataManager;
+        DataManager dataManager;
         List<Category> categoryList;
 
         public CategoryRepository()
         {
             categoryList = new List<Category>();
-            dataManager = new DataManagerCategory();
-            categoryList = GetAll();
+            dataManager = new DataManager();
+            categoryList = GetList();
         }
 
         public int GetIndex(string title)
         {
-            return GetAll().FindIndex(e => e.Title.Equals(title));
+            return GetList().FindIndex(e => e.Title.Equals(title));
         }
 
         public void Create(Category category)
         {
             categoryList.Add(category);
-            SaveChanges();
+            Save();
         }
 
         public void Delete (int index)
         {
             categoryList.RemoveAt(index);
-            SaveChanges();
+            Save();
         }
 
-        public List<Category> GetAll()
+        public List<Category> GetList()
         {
-            List<Category> categoryListToBeReturned = new List<Category>();
+            List<Category> categoryList = new List<Category>();
             try
             {
-                categoryListToBeReturned = dataManager.Deserialize();
+                categoryList = dataManager.DeserializeCategory();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message + "Kunde inte hämta kategorier");
             }
-            return categoryListToBeReturned;
+            return categoryList;
         }
 
-        public void SaveChanges()
+        public void Save()
         {
-            dataManager.Serialize(categoryList);
+            dataManager.SerializeCategory(categoryList);
         }
 
         public void Update(int index, Category category)
@@ -59,7 +59,7 @@ namespace DAL.Repositories
             {
                 categoryList[index] = category;
             }
-            SaveChanges();
+            Save();
         }
     }
 }

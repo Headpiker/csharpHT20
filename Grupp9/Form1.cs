@@ -43,14 +43,14 @@ namespace Grupp9
 
         private void btnNyKategori_Click(object sender, EventArgs e)
         {
-            categoryController.CreateCategory(tbValdKategori.Text);
+            categoryController.CreateCategoryObject(tbValdKategori.Text);
             displayCategories();
 
         }
         private void displayPodcasts()
         {
             lvPodcasts.Items.Clear();
-            foreach (var item in podcastController.RetriveAllPodcasts())
+            foreach (var item in podcastController.GetAllPodcasts())
             {
                 if(item != null)
                 {
@@ -64,7 +64,7 @@ namespace Grupp9
             clbKategorier.Items.Clear();
             cbKategori.Items.Clear();
 
-            foreach (var item in categoryController.RetriveAllCategories())
+            foreach (var item in categoryController.GetAllCategories())
             {
                 if (item != null)
                 {

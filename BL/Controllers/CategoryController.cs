@@ -16,7 +16,7 @@ namespace BL.Controllers
             categoryRepository = new CategoryRepository();
         }
 
-        public void CreateCategory(string title)
+        public void CreateCategoryObject(string title)
         {
             Category category = new Category(title);
             categoryRepository.Create(category);
@@ -28,9 +28,9 @@ namespace BL.Controllers
             categoryRepository.Delete(index);
         }
 
-        public List<Category> RetriveAllCategories()
+        public List<Category> GetAllCategories()
         {
-            return categoryRepository.GetAll();
+            return categoryRepository.GetList();
         }
     }
 }

@@ -62,7 +62,6 @@
             this.txtUrl.Name = "txtUrl";
             this.txtUrl.Size = new System.Drawing.Size(226, 22);
             this.txtUrl.TabIndex = 0;
-            this.txtUrl.Text = "URL://";
             // 
             // cbFrekvens
             // 
@@ -255,7 +254,6 @@
             this.txtPoddNamn.Name = "txtPoddNamn";
             this.txtPoddNamn.Size = new System.Drawing.Size(228, 22);
             this.txtPoddNamn.TabIndex = 20;
-            this.txtPoddNamn.Text = "Namn på podcast:";
             // 
             // label5
             // 

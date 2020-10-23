@@ -44,9 +44,9 @@ namespace BL.Controllers
             return episodes;
         }
 
-        public List<Podcast> RetriveAllPodcasts()
+        public List<Podcast> GetAllPodcasts()
         {
-            return podcastRepository.GetAll();
+            return podcastRepository.GetList();
         }
 
 
