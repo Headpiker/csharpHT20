@@ -5,9 +5,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.ServiceModel.Syndication;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Grupp9
 {
@@ -23,6 +25,7 @@ namespace Grupp9
             displayCategories();
             displayUpdateInterval();
             displayPodcasts();
+            lvPodcasts.FullRowSelect = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -32,13 +35,17 @@ namespace Grupp9
 
         private void btnNyPodd_Click(object sender, EventArgs e)
         {
+
+            //podcastController.test();
+
+            //Min ursprungliga kod:
+            
             string category = this.cbKategori.GetItemText(this.cbKategori.SelectedItem);
             string updateIntervalString = this.cbFrekvens.GetItemText(this.cbFrekvens.SelectedItem);
             int updateInterval = Convert.ToInt32(updateIntervalString);
-
-            podcastController.CreatePodcastObject(txtPoddNamn.Text, txtUrl.Text, category, updateInterval);
-
+            podcastController.CreatePodcastObject(txtPoddNamn.Text.ToString(), txtUrl.Text.ToString(), category, updateInterval);
             displayPodcasts();
+            
         }
 
         private void btnNyKategori_Click(object sender, EventArgs e)
