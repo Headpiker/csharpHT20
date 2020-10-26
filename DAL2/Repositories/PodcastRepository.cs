@@ -40,6 +40,11 @@ namespace DAL.Repositories
             return GetAll().FindIndex(a => a.Title.Equals(title));
         }
 
+        public Podcast GetTitle(string title)
+        {
+            return GetAll().First(a => a.Title.Equals(title));
+        }
+
         public List<Podcast> GetAll()
         {
             List<Podcast> podcasts = new List<Podcast>();
@@ -69,6 +74,8 @@ namespace DAL.Repositories
             }
             Save();
         }
+
+
     }
 
 }

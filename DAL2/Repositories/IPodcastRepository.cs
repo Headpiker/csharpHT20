@@ -1,6 +1,7 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Emit;
 using System.Text;
 
 namespace DAL.Repositories
@@ -9,6 +10,7 @@ namespace DAL.Repositories
     {
         void Update(int index, Podcast newPodcast);
         List<T> GetList();
+        Podcast GetTitle(string title);
 
     }
 }
