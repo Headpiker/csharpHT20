@@ -15,12 +15,12 @@ namespace DAL.Repositories
         {
             categoryList = new List<Category>();
             dataManager = new DataManager();
-            categoryList = GetList();
+            categoryList = GetAll();
         }
 
         public int GetIndex(string title)
         {
-            return GetList().FindIndex(e => e.Title.Equals(title));
+            return GetAll().FindIndex(e => e.Title.Equals(title));
         }
 
         public void Create(Category category)
@@ -35,7 +35,7 @@ namespace DAL.Repositories
             Save();
         }
 
-        public List<Category> GetList()
+        public List<Category> GetAll()
         {
             List<Category> categoryList = new List<Category>();
             try

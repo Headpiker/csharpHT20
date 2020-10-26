@@ -30,7 +30,7 @@ namespace BL.Controllers
 
         public List<Category> GetAllCategories()
         {
-            return categoryRepository.GetList();
+            return categoryRepository.GetAll();
         }
 
         public void RenameCategory(string title, string newTitle, List<Podcast> podcasts)
