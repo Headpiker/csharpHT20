@@ -76,6 +76,7 @@ namespace DAL.Repositories
             //                   on podcast.Category equals category.Title
             //                   where cat.Title = newTitle
             Save();
+
         }
     }
 }

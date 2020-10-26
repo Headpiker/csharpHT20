@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Models;
 
@@ -18,7 +19,7 @@ namespace DAL.Repositories
         }
 
         public void Save()
-        {  
+        {
             dataManager.SerializePodcast(podcastList);
         }
 
@@ -32,6 +33,18 @@ namespace DAL.Repositories
         {
             podcastList.RemoveAt(index);
             Save();
+        }
+
+        public int GetIndex (string title)
+        {
+            return GetAll().FindIndex(a => a.Title.Equals(title));
+        }
+
+        public List<Podcast> GetAll()
+        {
+            List<Podcast> podcasts = new List<Podcast>();
+            podcasts = dataManager.DeserializePodcast();
+            return podcasts;
         }
 
         public List<Podcast> GetList()
@@ -48,6 +61,14 @@ namespace DAL.Repositories
             return podcastList;
         }
 
+        public void Update(int index, Podcast newPodcast)
+        {
+            if(index >= 0)
+            {
+                podcastList[index] = newPodcast;
+            }
+            Save();
+        }
     }
 
 }
