@@ -65,6 +65,7 @@
             // 
             // cbFrekvens
             // 
+            this.cbFrekvens.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFrekvens.FormattingEnabled = true;
             this.cbFrekvens.Location = new System.Drawing.Point(281, 272);
             this.cbFrekvens.Margin = new System.Windows.Forms.Padding(4);
@@ -74,6 +75,7 @@
             // 
             // cbKategori
             // 
+            this.cbKategori.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbKategori.FormattingEnabled = true;
             this.cbKategori.Location = new System.Drawing.Point(462, 272);
             this.cbKategori.Margin = new System.Windows.Forms.Padding(4);
@@ -114,8 +116,8 @@
             // lvPodcasts
             // 
             this.lvPodcasts.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnAntalAvsnitt,
             this.columnHeaderTitel,
+            this.columnAntalAvsnitt,
             this.columnHeaderFrekvens,
             this.columnHeaderKategori});
             this.lvPodcasts.HideSelection = false;
@@ -126,6 +128,7 @@
             this.lvPodcasts.TabIndex = 6;
             this.lvPodcasts.UseCompatibleStateImageBehavior = false;
             this.lvPodcasts.View = System.Windows.Forms.View.Details;
+            this.lvPodcasts.SelectedIndexChanged += new System.EventHandler(this.lvPodcasts_SelectedIndexChanged);
             // 
             // columnAntalAvsnitt
             // 

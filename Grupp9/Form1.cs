@@ -17,14 +17,17 @@ namespace Grupp9
     {
         PodcastController podcastController;
         CategoryController categoryController;
+        EpisodeController episodeController;
         public Form1()
         {
             InitializeComponent();
             podcastController = new PodcastController();
             categoryController = new CategoryController();
+            episodeController = new EpisodeController();
             displayCategories();
             displayUpdateInterval();
             displayPodcasts();
+
             lvPodcasts.FullRowSelect = true;
         }
 
@@ -62,8 +65,8 @@ namespace Grupp9
             {
                 if(item != null)
                 {
-                    ListViewItem newList = new ListViewItem("Antal"); //Hårdkodat just nu
-                    newList.SubItems.Add(item.Title);
+                    ListViewItem newList = new ListViewItem(item.Title); 
+                    newList.SubItems.Add("Antal");                      //Antal är hårdkodat just nu
                     newList.SubItems.Add(item.UpdateInterval.ToString());
                     newList.SubItems.Add(item.Category);
                     lvPodcasts.Items.Add(newList);
@@ -80,13 +83,10 @@ namespace Grupp9
                 if (item != null)
                 {
                     clbKategorier.Items.Add(item.Title);
-                    cbKategori.Items.Add(item.Title);
-                    
+                    cbKategori.Items.Add(item.Title);  
                 }
-
             }
             cbKategori.SelectedIndex = 0;
-
         }
         private void displayUpdateInterval()
         {
@@ -94,6 +94,29 @@ namespace Grupp9
             cbFrekvens.Items.Add("500");
             cbFrekvens.Items.Add("600");
             cbFrekvens.SelectedIndex = 0;
+        }
+
+        private void lvPodcasts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lbAvsnitt.Items.Clear();
+            if (lvPodcasts.SelectedItems.Count == 1)
+            {
+                string title = lvPodcasts.SelectedItems[0].Text;
+                label6.Text = title;
+
+                foreach (var item in podcastController.GetAllPodcasts())
+                {
+                    if (item.Title.Equals(title))
+                    {
+                        foreach (var item2 in item.Episodes)
+                        {
+                            lbAvsnitt.Items.Add(item2.Title);
+                        }
+                    }
+
+                }
+                episodeController.GetEpisodes(title);
+            }
         }
     }
 }
