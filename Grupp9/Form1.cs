@@ -82,7 +82,14 @@ namespace Grupp9
                     cbKategori.Items.Add(item.Title);
                 }
             }
-            cbKategori.SelectedIndex = 0;
+            try
+            {
+                cbKategori.SelectedIndex = 0;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                
+            }
         }
         private void displayUpdateInterval()
         {
