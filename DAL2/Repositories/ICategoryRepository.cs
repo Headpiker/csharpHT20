@@ -9,5 +9,6 @@ namespace DAL.Repositories
     {
         int GetIndex(string title);
         void Update(int index, Category category);
+        void Rename(int index, string newTitle, List<Podcast> podcasts);
     }
 }

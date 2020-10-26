@@ -1,4 +1,6 @@
 ﻿using BL.Controllers;
+using Microsoft.VisualBasic;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -94,6 +96,59 @@ namespace Grupp9
             cbFrekvens.Items.Add("500");
             cbFrekvens.Items.Add("600");
             cbFrekvens.SelectedIndex = 0;
+        }
+
+        private void btnUppdateraKategori_Click(object sender, EventArgs e)
+        {
+            string title = tbValdKategori.Text.ToString();
+
+            if(title != "")
+            {
+                string newTitel = Interaction.InputBox("Skriv in ett nytt namn på kategorin " + title + " för att byta namn.", "Uppdatera kategori", "", 500, 300);
+                if (newTitel != "")
+                {
+                    List<Podcast> podcasts = podcastController.GetAllPodcasts();
+                    categoryController.RenameCategory(title, newTitel, podcasts);
+                    displayCategories();
+                    displayPodcasts();
+                    tbValdKategori.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("Vänligen skriv in en ny titel för att uppdatera kategorin!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Välj en kategori för att uppdatera den!");
+            }
+        }
+
+        private void clbKategorier_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if(!clbKategorier.GetItemChecked(e.Index))
+            {
+                string vald = clbKategorier.SelectedItem.ToString();
+                tbValdKategori.Text = vald;
+            }
+            else
+            {
+                tbValdKategori.Text = "";
+            }
+
+        }
+
+        private void btnTaBortKategori_Click(object sender, EventArgs e)
+        {
+            string category = tbValdKategori.Text;
+            DialogResult result = MessageBox.Show("Är du säker på att du vill radera kategorin " + category + " ? \n Alla podcasts som tillhör kategorin kommer att raderas!", "Radera kategori med tiihörande podcasts", MessageBoxButtons.YesNoCancel);
+            if (result == DialogResult.Yes)
+            {
+                categoryController.DeleteCategory(category);
+                displayCategories();
+                displayPodcasts();
+                tbValdKategori.Text = "";
+            }
         }
     }
 }
