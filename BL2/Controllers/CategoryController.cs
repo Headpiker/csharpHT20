@@ -1,9 +1,9 @@
-﻿using DAL.Repositories;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Models;
-using System.ServiceModel.Syndication;
+using DAL.Repositories;
 
 namespace BL.Controllers
 {

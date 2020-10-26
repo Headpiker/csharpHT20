@@ -5,9 +5,8 @@ using System.Text;
 
 namespace DAL.Repositories
 {
-    public interface IEpisodeRepository<T> where T : Episode
+    public interface IPodcastRepository<T> : IRepository<T> where T : Podcast
     {
-
 
     }
 }

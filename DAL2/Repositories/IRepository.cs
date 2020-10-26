@@ -11,5 +11,5 @@ namespace DAL.Repositories
         void Save();
         void Delete(int index);
     }
-    
+
 }
