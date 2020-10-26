@@ -212,6 +212,7 @@
             this.btnUppdateraKategori.TabIndex = 15;
             this.btnUppdateraKategori.Text = "Uppdatera";
             this.btnUppdateraKategori.UseVisualStyleBackColor = true;
+            this.btnUppdateraKategori.Click += new System.EventHandler(this.btnUppdateraKategori_Click);
             // 
             // rtbAvsnittInfo
             // 

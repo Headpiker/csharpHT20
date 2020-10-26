@@ -167,5 +167,10 @@ namespace Grupp9
             }
 
         }
+
+        private void btnUppdateraKategori_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
