@@ -42,10 +42,17 @@ namespace BL.Controllers
             podcastRepository.Delete(index);
         }
 
-        public int UpdatePodcast(string title)
+        public int GetIndexByTitle(string title)
         {
             int index = podcastRepository.GetIndex(title);
             return index;
+        }
+
+        public string GetUrlByTitle(string title)
+        {
+            Podcast podcast = podcastRepository.GetTitle(title);
+            string url = podcast.Url;
+            return url;
         }
 
         public void UpdatePodcastObject(string title, string url, string category, int updateInterval, int index)
