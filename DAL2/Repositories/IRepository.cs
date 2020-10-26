@@ -10,6 +10,8 @@ namespace DAL.Repositories
         List<T> GetList();
         void Save();
         void Delete(int index);
+        int GetIndex(string title);
+        List<T> GetAll();
     }
 
 }
