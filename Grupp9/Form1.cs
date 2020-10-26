@@ -39,7 +39,7 @@ namespace Grupp9
         }
 
         private void btnNyPodd_Click(object sender, EventArgs e)
-        {            
+        {
             string category = this.cbKategori.GetItemText(this.cbKategori.SelectedItem);
             string updateIntervalString = this.cbFrekvens.GetItemText(this.cbFrekvens.SelectedItem);
             int updateInterval = Convert.ToInt32(updateIntervalString);
@@ -56,12 +56,12 @@ namespace Grupp9
         private void displayPodcasts()
         {
             lvPodcasts.Items.Clear();
-            
+
             foreach (var item in podcastController.GetAllPodcasts())
             {
-                if(item != null)
+                if (item != null)
                 {
-                    ListViewItem newList = new ListViewItem(item.Title); 
+                    ListViewItem newList = new ListViewItem(item.Title);
                     newList.SubItems.Add("Antal");                      //Antal är hårdkodat just nu
                     newList.SubItems.Add(item.UpdateInterval.ToString());
                     newList.SubItems.Add(item.Category);
@@ -79,7 +79,7 @@ namespace Grupp9
                 if (item != null)
                 {
                     lbKategorier.Items.Add(item.Title);
-                    cbKategori.Items.Add(item.Title);  
+                    cbKategori.Items.Add(item.Title);
                 }
             }
             cbKategori.SelectedIndex = 0;
@@ -97,7 +97,7 @@ namespace Grupp9
         {
             string title = tbValdKategori.Text.ToString();
 
-            if(title != "")
+            if (title != "")
             {
                 string newTitel = Interaction.InputBox("Skriv in ett nytt namn på kategorin " + title + " för att byta namn.", "Uppdatera kategori", "", 500, 300);
                 if (newTitel != "")
@@ -121,7 +121,7 @@ namespace Grupp9
 
         private void clbKategorier_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            if(!clbKategorier.GetItemChecked(e.Index))
+            if (!clbKategorier.GetItemChecked(e.Index))
             {
                 string vald = clbKategorier.SelectedItem.ToString();
                 tbValdKategori.Text = vald;
@@ -144,40 +144,41 @@ namespace Grupp9
                 displayPodcasts();
                 tbValdKategori.Text = "";
             }
+        }
 
-        private void btnTaBortPodd_Click(object sender, EventArgs e)
-        {
-            if (lvPodcasts.SelectedItems.Count == 1) 
-            { 
-                string title = lvPodcasts.SelectedItems[0].Text;
+            private void btnTaBortPodd_Click(object sender, EventArgs e)
+            {
+                if (lvPodcasts.SelectedItems.Count == 1)
+                {
+                    string title = lvPodcasts.SelectedItems[0].Text;
 
-                DialogResult result = MessageBox.Show("Vill du ta bort podcasten " + title + "?", "Warning", MessageBoxButtons.YesNo);
-                if(result == DialogResult.Yes) 
-                { 
-                    podcastController.DeletePodcast(title);
-                    displayPodcasts();
-                    lbAvsnitt.Items.Clear();
+                    DialogResult result = MessageBox.Show("Vill du ta bort podcasten " + title + "?", "Warning", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        podcastController.DeletePodcast(title);
+                        displayPodcasts();
+                        lbAvsnitt.Items.Clear();
+                    }
                 }
             }
-        }
 
 
-        private void btnUppdateraPodd_Click(object sender, EventArgs e)
-        {
-            if (lvPodcasts.SelectedItems.Count == 1)
+            private void btnUppdateraPodd_Click(object sender, EventArgs e)
             {
-                string title = lvPodcasts.SelectedItems[0].Text;
-                int index = podcastController.UpdatePodcast(title);
+                if (lvPodcasts.SelectedItems.Count == 1)
+                {
+                    string title = lvPodcasts.SelectedItems[0].Text;
+                    int index = podcastController.UpdatePodcast(title);
 
 
-                string category = this.cbKategori.GetItemText(this.cbKategori.SelectedItem);
-                string updateIntervalString = this.cbFrekvens.GetItemText(this.cbFrekvens.SelectedItem);
-                int updateInterval = Convert.ToInt32(updateIntervalString);
-                podcastController.UpdatePodcastObject(txtPoddNamn.Text.ToString(), txtUrl.Text.ToString(), category, updateInterval, index);
-                displayPodcasts();
+                    string category = this.cbKategori.GetItemText(this.cbKategori.SelectedItem);
+                    string updateIntervalString = this.cbFrekvens.GetItemText(this.cbFrekvens.SelectedItem);
+                    int updateInterval = Convert.ToInt32(updateIntervalString);
+                    podcastController.UpdatePodcastObject(txtPoddNamn.Text.ToString(), txtUrl.Text.ToString(), category, updateInterval, index);
+                    displayPodcasts();
+                }
+
+
             }
-
-
         }
     }
-}

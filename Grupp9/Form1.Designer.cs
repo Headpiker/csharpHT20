@@ -53,6 +53,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tbValdKategori = new System.Windows.Forms.TextBox();
             this.lbKategorier = new System.Windows.Forms.ListBox();
+            this.clbKategorier = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
             // txtUrl
@@ -128,7 +129,6 @@
             this.lvPodcasts.TabIndex = 6;
             this.lvPodcasts.UseCompatibleStateImageBehavior = false;
             this.lvPodcasts.View = System.Windows.Forms.View.Details;
-            this.lvPodcasts.SelectedIndexChanged += new System.EventHandler(this.lvPodcasts_SelectedIndexChanged);
             // 
             // columnHeaderTitel
             // 
@@ -192,18 +192,6 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "Kategorier";
             // 
-
-            // clbKategorier
-            // 
-            this.clbKategorier.FormattingEnabled = true;
-            this.clbKategorier.Location = new System.Drawing.Point(772, 46);
-            this.clbKategorier.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.clbKategorier.Name = "clbKategorier";
-            this.clbKategorier.Size = new System.Drawing.Size(542, 234);
-            this.clbKategorier.TabIndex = 13;
-            this.clbKategorier.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbKategorier_ItemCheck);
-            // 
-
             // btnNyKategori
             // 
             this.btnNyKategori.Location = new System.Drawing.Point(780, 378);
@@ -303,13 +291,20 @@
             this.lbKategorier.Size = new System.Drawing.Size(481, 196);
             this.lbKategorier.TabIndex = 24;
             // 
+            // clbKategorier
+            // 
+            this.clbKategorier.FormattingEnabled = true;
+            this.clbKategorier.Location = new System.Drawing.Point(778, 39);
+            this.clbKategorier.Name = "clbKategorier";
+            this.clbKategorier.Size = new System.Drawing.Size(535, 257);
+            this.clbKategorier.TabIndex = 24;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-
             this.ClientSize = new System.Drawing.Size(1362, 779);
-
+            this.Controls.Add(this.clbKategorier);
             this.Controls.Add(this.tbValdKategori);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -366,6 +361,7 @@
         private System.Windows.Forms.ColumnHeader columnHeaderKategori;
         private System.Windows.Forms.TextBox tbValdKategori;
         private System.Windows.Forms.ListBox lbKategorier;
+        private System.Windows.Forms.CheckedListBox clbKategorier;
     }
 }
 
