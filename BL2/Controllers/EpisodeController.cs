@@ -17,11 +17,5 @@ namespace BL.Controllers
         {
             episodeRepository = new EpisodeRepository();
         }
-
-        public List<Episode> GetEpisodes(string podcast)
-        {
-            
-            return episodeRepository.GetEpisodesFromPodcastTitle(podcast);
-        }
     }
 }

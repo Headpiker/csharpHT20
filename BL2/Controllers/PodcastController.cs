@@ -35,5 +35,11 @@ namespace BL.Controllers
             return podcastRepository.GetList();
         }
 
+        public void DeletePodcast(string title)
+        {
+            int index = podcastRepository.GetIndex(title);
+            podcastRepository.Delete(index);
+        }
+
     }
 }

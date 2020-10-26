@@ -19,7 +19,7 @@ namespace DAL.Repositories
         }
 
         public void Save()
-        {  
+        {
             dataManager.SerializePodcast(podcastList);
         }
 
@@ -33,6 +33,18 @@ namespace DAL.Repositories
         {
             podcastList.RemoveAt(index);
             Save();
+        }
+
+        public int GetIndex (string title)
+        {
+            return GetAll().FindIndex(a => a.Title.Equals(title));
+        }
+
+        public List<Podcast> GetAll()
+        {
+            List<Podcast> podcasts = new List<Podcast>();
+            podcasts = dataManager.DeserializePodcast();
+            return podcasts;
         }
 
         public List<Podcast> GetList()

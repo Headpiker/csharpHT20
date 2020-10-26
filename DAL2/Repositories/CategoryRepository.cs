@@ -61,5 +61,12 @@ namespace DAL.Repositories
             }
             Save();
         }
+
+        public List<Category> GetAll()
+        {
+            List<Category> categorys = new List<Category>();
+            categorys = dataManager.DeserializeCategory();
+            return categorys;
+        }
     }
 }

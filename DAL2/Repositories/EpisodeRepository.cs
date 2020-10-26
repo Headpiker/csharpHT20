@@ -34,13 +34,5 @@ namespace DAL.Repositories
             }
             return episodes;
         }
-
-       public List<Episode> GetEpisodesFromPodcastTitle(string podcastTitle)
-        {
-            List<Episode> episodes = new List<Episode>();
-            
-            return episodes;
-        }
-
     }
 }
