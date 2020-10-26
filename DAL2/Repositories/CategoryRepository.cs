@@ -1,6 +1,7 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DAL.Repositories
@@ -62,11 +63,20 @@ namespace DAL.Repositories
             Save();
         }
 
-        public List<Category> GetAll()
+        public void Rename(int index, string newTitle, List<Podcast> podcastsOfCategory)
         {
-            List<Category> categorys = new List<Category>();
-            categorys = dataManager.DeserializeCategory();
-            return categorys;
+            Category category = categoryList.ElementAt(index);
+            category.Title = newTitle;
+            foreach (Podcast podcast in podcastsOfCategory)
+            {
+                podcast.Category = newTitle;
+            }
+            //Podcast podcasts = from podcast in podcastsOfCategory
+            //                   join cat in categoryList
+            //                   on podcast.Category equals category.Title
+            //                   where cat.Title = newTitle
+            Save();
+
         }
     }
 }

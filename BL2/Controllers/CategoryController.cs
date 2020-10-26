@@ -32,5 +32,19 @@ namespace BL.Controllers
         {
             return categoryRepository.GetList();
         }
+
+        public void RenameCategory(string title, string newTitle, List<Podcast> podcasts)
+        {
+            List<Podcast> podcastsOfCategory = new List<Podcast>();
+            int index = categoryRepository.GetIndex(title);
+            foreach (Podcast podcast in podcasts)
+            {
+                if(podcast.Category == title)
+                {
+                    podcastsOfCategory.Add(podcast);
+                }
+            }
+            categoryRepository.Rename(index, newTitle, podcastsOfCategory);
+        }
     }
 }

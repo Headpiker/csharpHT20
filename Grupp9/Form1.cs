@@ -1,4 +1,6 @@
 ﻿using BL.Controllers;
+using Microsoft.VisualBasic;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -90,26 +92,58 @@ namespace Grupp9
             cbFrekvens.SelectedIndex = 0;
         }
 
-        private void lvPodcasts_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            lbAvsnitt.Items.Clear();
-            if (lvPodcasts.SelectedItems.Count == 1)
-            {
-                string title = lvPodcasts.SelectedItems[0].Text;
-                label6.Text = title;
 
-                foreach (var item in podcastController.GetAllPodcasts())
+        private void btnUppdateraKategori_Click(object sender, EventArgs e)
+        {
+            string title = tbValdKategori.Text.ToString();
+
+            if(title != "")
+            {
+                string newTitel = Interaction.InputBox("Skriv in ett nytt namn på kategorin " + title + " för att byta namn.", "Uppdatera kategori", "", 500, 300);
+                if (newTitel != "")
                 {
-                    if (item.Title.Equals(title))
-                    {
-                        foreach (var item2 in item.Episodes)
-                        {
-                            lbAvsnitt.Items.Add(item2.Title);
-                        }
-                    }
+                    List<Podcast> podcasts = podcastController.GetAllPodcasts();
+                    categoryController.RenameCategory(title, newTitel, podcasts);
+                    displayCategories();
+                    displayPodcasts();
+                    tbValdKategori.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("Vänligen skriv in en ny titel för att uppdatera kategorin!");
                 }
             }
+            else
+            {
+                MessageBox.Show("Välj en kategori för att uppdatera den!");
+            }
         }
+
+        private void clbKategorier_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if(!clbKategorier.GetItemChecked(e.Index))
+            {
+                string vald = clbKategorier.SelectedItem.ToString();
+                tbValdKategori.Text = vald;
+            }
+            else
+            {
+                tbValdKategori.Text = "";
+            }
+
+        }
+
+        private void btnTaBortKategori_Click(object sender, EventArgs e)
+        {
+            string category = tbValdKategori.Text;
+            DialogResult result = MessageBox.Show("Är du säker på att du vill radera kategorin " + category + " ? \n Alla podcasts som tillhör kategorin kommer att raderas!", "Radera kategori med tiihörande podcasts", MessageBoxButtons.YesNoCancel);
+            if (result == DialogResult.Yes)
+            {
+                categoryController.DeleteCategory(category);
+                displayCategories();
+                displayPodcasts();
+                tbValdKategori.Text = "";
+            }
 
         private void btnTaBortPodd_Click(object sender, EventArgs e)
         {
@@ -127,29 +161,6 @@ namespace Grupp9
             }
         }
 
-        private void btnTaBortKategori_Click(object sender, EventArgs e)
-        {
-            if (lbKategorier.SelectedItems.Count == 1)
-            {
-                string category = lbKategorier.SelectedItem.ToString();
-
-                DialogResult result = MessageBox.Show("Vill du ta bort kategorin " + category + " och alla tillhörande podcasts?", "Warning", MessageBoxButtons.YesNo);
-                if (result == DialogResult.Yes)
-                {
-                    categoryController.DeleteCategory(category);
-                    displayCategories();
-                    tbValdKategori.Clear();
-                }
-            }
-
-            
-
-        }
-
-        private void clbKategorier_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnUppdateraPodd_Click(object sender, EventArgs e)
         {
@@ -165,6 +176,7 @@ namespace Grupp9
                 podcastController.UpdatePodcastObject(txtPoddNamn.Text.ToString(), txtUrl.Text.ToString(), category, updateInterval, index);
                 displayPodcasts();
             }
+
 
         }
     }
