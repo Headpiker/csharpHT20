@@ -60,6 +60,15 @@ namespace DAL.Repositories
             }
             return podcastList;
         }
+
+        public void Update(int index, Podcast newPodcast)
+        {
+            if(index >= 0)
+            {
+                podcastList[index] = newPodcast;
+            }
+            Save();
+        }
     }
 
 }

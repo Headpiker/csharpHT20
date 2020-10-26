@@ -232,6 +232,7 @@
             this.btnUppdateraPodd.TabIndex = 17;
             this.btnUppdateraPodd.Text = "Uppdatera";
             this.btnUppdateraPodd.UseVisualStyleBackColor = true;
+            this.btnUppdateraPodd.Click += new System.EventHandler(this.btnUppdateraPodd_Click);
             // 
             // btnTaBortKategori
             // 

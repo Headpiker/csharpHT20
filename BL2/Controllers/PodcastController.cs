@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using DAL.Repositories;
+using System.Dynamic;
 
 namespace BL.Controllers
 {
@@ -39,6 +40,23 @@ namespace BL.Controllers
         {
             int index = podcastRepository.GetIndex(title);
             podcastRepository.Delete(index);
+        }
+
+        public int UpdatePodcast(string title)
+        {
+            int index = podcastRepository.GetIndex(title);
+            return index;
+        }
+
+        public void UpdatePodcastObject(string title, string url, string category, int updateInterval, int index)
+        {
+            if (Validation.IsUrlValid(url))
+            {
+                List<Episode> episodes = episodeRepository.GetEpisodesFromRSS(url);
+                Podcast podcast = new Podcast(title, url, category, updateInterval, episodes);
+                podcastRepository.Update(index, podcast);
+                
+            }
         }
 
     }

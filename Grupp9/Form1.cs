@@ -150,5 +150,22 @@ namespace Grupp9
         {
 
         }
+
+        private void btnUppdateraPodd_Click(object sender, EventArgs e)
+        {
+            if (lvPodcasts.SelectedItems.Count == 1)
+            {
+                string title = lvPodcasts.SelectedItems[0].Text;
+                int index = podcastController.UpdatePodcast(title);
+
+
+                string category = this.cbKategori.GetItemText(this.cbKategori.SelectedItem);
+                string updateIntervalString = this.cbFrekvens.GetItemText(this.cbFrekvens.SelectedItem);
+                int updateInterval = Convert.ToInt32(updateIntervalString);
+                podcastController.UpdatePodcastObject(txtPoddNamn.Text.ToString(), txtUrl.Text.ToString(), category, updateInterval, index);
+                displayPodcasts();
+            }
+
+        }
     }
 }
