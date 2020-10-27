@@ -30,12 +30,7 @@ namespace Grupp9
             displayCategories();
             displayUpdateInterval();
             displayPodcasts();
-            lvPodcastProperties();
 
-        }
-
-        private void lvPodcastProperties()
-        {
             lvPodcasts.FullRowSelect = true;
 
         }
@@ -53,6 +48,7 @@ namespace Grupp9
             podcastController.CreatePodcastObject(txtPoddNamn.Text.ToString(), txtUrl.Text.ToString(), category, updateInterval);
             displayPodcasts();
             ClearTxtNameAndUrl();
+            ClearEpisodeInfo();
         }
 
         private void btnNyKategori_Click(object sender, EventArgs e)
@@ -181,8 +177,8 @@ namespace Grupp9
                 {
                     podcastController.DeletePodcast(title);
                     displayPodcasts();
-                    lbAvsnitt.Items.Clear();
                     ClearTxtNameAndUrl();
+                    ClearEpisodeInfo();
                 }
             }
         }
@@ -193,7 +189,6 @@ namespace Grupp9
             {
                 string title = lvPodcasts.SelectedItems[0].Text;
                 int index = podcastController.GetIndexByTitle(title);
-                Console.WriteLine("Titel från lvPodcast: " + title);
 
                 string category = this.cbKategori.GetItemText(this.cbKategori.SelectedItem);
                 string updateIntervalString = this.cbFrekvens.GetItemText(this.cbFrekvens.SelectedItem);
@@ -202,6 +197,7 @@ namespace Grupp9
                 podcastController.UpdatePodcastObject(txtPoddNamn.Text.ToString(), txtUrl.Text.ToString(), category, updateInterval, index);
                 displayPodcasts();
                 ClearTxtNameAndUrl();
+                ClearEpisodeInfo();
 
             }
             else
@@ -216,10 +212,16 @@ namespace Grupp9
             txtPoddNamn.Clear();
         }
 
+        private void ClearEpisodeInfo()
+        {
+            rtbAvsnittInfo.Clear();
+            lbAvsnitt.Items.Clear();
+        }
+
         private void lvPodcasts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lbAvsnitt.Items.Clear();
-            
+            ClearEpisodeInfo();
+
             if (lvPodcasts.SelectedItems.Count == 1)
             {
                 string title = lvPodcasts.SelectedItems[0].Text;
