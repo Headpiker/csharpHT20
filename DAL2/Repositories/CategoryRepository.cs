@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace DAL.Repositories
 {
@@ -67,16 +68,23 @@ namespace DAL.Repositories
         {
             Category category = categoryList.ElementAt(index);
             category.Title = newTitle;
+            PodcastRepository podcastRepository = new PodcastRepository();
             foreach (Podcast podcast in podcastsOfCategory)
             {
                 podcast.Category = newTitle;
+               // MessageBox.Show(podcast.Category.ToString());
             }
-            //Podcast podcasts = from podcast in podcastsOfCategory
-            //                   join cat in categoryList
-            //                   on podcast.Category equals category.Title
-            //                   where cat.Title = newTitle
-            Save();
 
+            //var items = from item in xmlDoc.Descendants("item")
+            //            where item.Element("itemID").Value == itemID
+            //            select item;
+
+            //foreach (XElement itemElement in items)
+            //{
+            //    itemElement.SetElementValue("name", "Lord of the Rings Figures");
+            //}
+            Save();
+            podcastRepository.Save();
         }
     }
 }

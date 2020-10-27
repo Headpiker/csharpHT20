@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Models;
 using DAL.Repositories;
+using System.Windows.Forms;
 
 namespace BL.Controllers
 {
@@ -24,7 +25,16 @@ namespace BL.Controllers
 
         public void DeleteCategory(string title)
         {
+            PodcastController podcastController = new PodcastController();
             int index = categoryRepository.GetIndex(title);
+            foreach (Podcast podcast in podcastController.GetAllPodcasts())
+            {
+                if(podcast.Category.ToString() == title)
+                {
+                    string podcastTitle = podcast.Title.ToString();
+                    podcastController.DeletePodcast(podcastTitle);
+                }
+            }
             categoryRepository.Delete(index);
         }
 
@@ -39,7 +49,7 @@ namespace BL.Controllers
             int index = categoryRepository.GetIndex(title);
             foreach (Podcast podcast in podcasts)
             {
-                if(podcast.Category == title)
+                if (podcast.Category.ToString() == title)
                 {
                     podcastsOfCategory.Add(podcast);
                 }
