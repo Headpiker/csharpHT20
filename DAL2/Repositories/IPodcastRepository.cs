@@ -12,5 +12,7 @@ namespace DAL.Repositories
         List<T> GetList();
         Podcast GetTitle(string title);
 
+        void SaveUpdates(List<Podcast> podcasts);
+
     }
 }

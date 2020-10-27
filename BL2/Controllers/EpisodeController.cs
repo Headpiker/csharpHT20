@@ -23,6 +23,5 @@ namespace BL.Controllers
         {
             return episodeRepository.GetEpisodesFromPodcastTitle(podcast);
         }
-
     }
 }
