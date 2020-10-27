@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace DAL.Repositories
 {
@@ -67,16 +68,19 @@ namespace DAL.Repositories
         {
             Category category = categoryList.ElementAt(index);
             category.Title = newTitle;
+            PodcastRepository podcastRepository = new PodcastRepository();
             foreach (Podcast podcast in podcastsOfCategory)
             {
-                podcast.Category = newTitle;
+                Podcast pod = new Podcast();
+                pod.Title = podcast.Title;
+                pod.UpdateInterval = podcast.UpdateInterval;
+                pod.Episodes = podcast.Episodes;
+                pod.Url = podcast.Url;
+                pod.Category = newTitle;
+                int i = podcastRepository.GetIndex(pod.Title.ToString());
+                podcastRepository.Update(i, pod);
             }
-            //Podcast podcasts = from podcast in podcastsOfCategory
-            //                   join cat in categoryList
-            //                   on podcast.Category equals category.Title
-            //                   where cat.Title = newTitle
             Save();
-
         }
     }
 }
