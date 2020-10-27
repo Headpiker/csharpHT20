@@ -49,7 +49,7 @@ namespace BL.Controllers
             int index = categoryRepository.GetIndex(title);
             foreach (Podcast podcast in podcasts)
             {
-                if (podcast.Category.ToString() == title)
+                if (podcast.Category.ToString().Equals(title))
                 {
                     podcastsOfCategory.Add(podcast);
                 }

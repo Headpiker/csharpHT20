@@ -71,20 +71,16 @@ namespace DAL.Repositories
             PodcastRepository podcastRepository = new PodcastRepository();
             foreach (Podcast podcast in podcastsOfCategory)
             {
-                podcast.Category = newTitle;
-               // MessageBox.Show(podcast.Category.ToString());
+                Podcast pod = new Podcast();
+                pod.Title = podcast.Title;
+                pod.UpdateInterval = podcast.UpdateInterval;
+                pod.Episodes = podcast.Episodes;
+                pod.Url = podcast.Url;
+                pod.Category = newTitle;
+                int i = podcastRepository.GetIndex(pod.Title.ToString());
+                podcastRepository.Update(i, pod);
             }
-
-            //var items = from item in xmlDoc.Descendants("item")
-            //            where item.Element("itemID").Value == itemID
-            //            select item;
-
-            //foreach (XElement itemElement in items)
-            //{
-            //    itemElement.SetElementValue("name", "Lord of the Rings Figures");
-            //}
             Save();
-            podcastRepository.Save();
         }
     }
 }
