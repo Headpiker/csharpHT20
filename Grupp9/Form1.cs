@@ -21,6 +21,7 @@ namespace Grupp9
         PodcastController podcastController;
         CategoryController categoryController;
         EpisodeController episodeController;
+        private Timer timer = new Timer();
         public Form1()
         {
             InitializeComponent();
@@ -32,12 +33,21 @@ namespace Grupp9
             displayPodcasts();
 
             lvPodcasts.FullRowSelect = true;
+            timer.Interval = 1000;
+            timer.Tick += Timer_Tick;
+            timer.Start();
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            podcastController.UpdateEpisodes();
+            Console.WriteLine(1);
         }
 
         private void btnNyPodd_Click(object sender, EventArgs e)

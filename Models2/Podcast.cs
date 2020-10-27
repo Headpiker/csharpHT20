@@ -11,6 +11,7 @@ namespace Models
         public string Category { get; set; }
         public int UpdateInterval { get; set; }
         public List<Episode> Episodes { get; set; }
+        public DateTime NextUpdate { get; set; }
 
         public override string EntityType()
         {
@@ -25,11 +26,10 @@ namespace Models
             UpdateInterval = updateInterval;
             Episodes = episodes;
         }
+        public Podcast()
+        {
 
-            public Podcast()
-            {
-
-            }
+        }
 
     }
 }

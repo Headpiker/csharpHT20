@@ -8,6 +8,7 @@ using System.Linq;
 using System.ServiceModel.Syndication;
 using DAL.Repositories;
 using System.Dynamic;
+using System.Windows.Forms;
 
 namespace BL.Controllers
 {
@@ -62,8 +63,19 @@ namespace BL.Controllers
                 List<Episode> episodes = episodeRepository.GetEpisodesFromRSS(url);
                 Podcast podcast = new Podcast(title, url, category, updateInterval, episodes);
                 podcastRepository.Update(index, podcast);
-                
             }
+        }
+
+        public void UpdateEpisodes()
+        {
+            List<Podcast> podcasts = GetAllPodcasts();
+            foreach (var item in podcasts)
+            {
+                string podcastUrl = item.Url;
+                List<Episode> episodes = episodeRepository.GetEpisodesFromRSS(podcastUrl);
+                item.Episodes = episodes;
+            }
+            podcastRepository.UpdateEpisodes(podcasts);
         }
 
     }
