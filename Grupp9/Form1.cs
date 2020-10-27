@@ -47,7 +47,6 @@ namespace Grupp9
         private void Timer_Tick(object sender, EventArgs e)
         {
             podcastController.UpdateEpisodes();
-            Console.WriteLine(1);
         }
 
         private void btnNyPodd_Click(object sender, EventArgs e)
@@ -251,7 +250,7 @@ namespace Grupp9
                         int numberEpisode = 1;
                         foreach (var item2 in item.Episodes)
                         {
-                            lbAvsnitt.Items.Add("Avsnitt " + numberEpisode + ": " + item2.Title);
+                            lbAvsnitt.Items.Add("* " + item2.Title);
                             numberEpisode++;
                         }
                     }
@@ -276,7 +275,7 @@ namespace Grupp9
             {
                 string podcast = label6.Text;
                 string episode = lbAvsnitt.SelectedItem.ToString();
-                string episodeTitle = episode.Substring(11);
+                string episodeTitle = episode.Substring(2);
 
                 foreach (var item in podcastController.GetAllPodcasts())
                 {
@@ -284,7 +283,7 @@ namespace Grupp9
                     {
                         if (aEpisode.Title.Equals(episodeTitle) && item.Title.Equals(podcast))
                         {
-                            rtbAvsnittInfo.Text = episode + "\n\nBeskrivning:\n" + aEpisode.Description;
+                            rtbAvsnittInfo.Text = "Titel:\n" + episodeTitle + "\n\nBeskrivning:\n" + aEpisode.Description;
                         }
                     }
                 }

@@ -24,7 +24,7 @@ namespace BL.Controllers
         }
         public void CreatePodcastObject(string title, string url, string category, int updateInterval)
         {
-            if (Validation.IsUrlValid(url)) 
+            if (Validation.IsUrlValid(url))
             {
                 List<Episode> episodes = episodeRepository.GetEpisodesFromRSS(url);
                 Podcast podcast = new Podcast(title, url, category, updateInterval, episodes);
@@ -73,10 +73,11 @@ namespace BL.Controllers
             {
                 string podcastUrl = item.Url;
                 List<Episode> episodes = episodeRepository.GetEpisodesFromRSS(podcastUrl);
+
+                //If-statement som kollar om uppdateringar finns bör finnas här.
                 item.Episodes = episodes;
             }
-            podcastRepository.UpdateEpisodes(podcasts);
+            podcastRepository.SaveUpdates(podcasts);
         }
-
     }
 }
