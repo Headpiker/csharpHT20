@@ -82,5 +82,17 @@ namespace DAL.Repositories
             }
             Save();
         }
+
+        public List<Podcast> Filter(List<string> categoriesToFilterBy)
+        {
+            PodcastRepository podcastRepository = new PodcastRepository();
+            List<Podcast> allPodcasts = podcastRepository.GetAll();
+            List<Podcast> filteredPodcasts = new List<Podcast>();
+            foreach (string category in categoriesToFilterBy)
+            {
+                filteredPodcasts.AddRange(allPodcasts.Where(x => x.Category.Contains(category)));
+            }
+            return filteredPodcasts;
+        }
     }
 }
