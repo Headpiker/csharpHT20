@@ -56,5 +56,11 @@ namespace BL.Controllers
             }
             categoryRepository.Rename(index, newTitle, podcastsOfCategory);
         }
+
+        public List<Podcast> FilterPodcasts(List<string> categories)
+        {
+            List<Podcast> filteredPodcasts = categoryRepository.Filter(categories);
+            return filteredPodcasts;
+        }
     }
 }
