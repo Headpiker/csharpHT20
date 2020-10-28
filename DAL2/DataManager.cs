@@ -1,15 +1,22 @@
-﻿using Models;
+﻿using DAL2;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace DAL
 {
+
     public class DataManager
     {
+        string pathPodcasts = @".\Grupp9\bin\Debug\Podcasts.xml";
+        string pathCategories = @".\Grupp9\bin\Debug\Categories.xml";
         public void SerializePodcast(List<Podcast> podcasts)
         {
+            if (!DALValidation.IsFileExisting(Path.GetFullPath(Path.Combine(pathPodcasts, @"..\")))) { 
+
             try
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(podcasts.GetType());
@@ -22,42 +29,53 @@ namespace DAL
             {
                 throw new SerializerException("Podcasts.xml", "Didn't work");
             }
+            }
+            else { MessageBox.Show("Hittar inte filen Podcasts.xml!");}
         }
 
         public List<Podcast> DeserializePodcast()
         {
-            try
-            {
-
-                List<Podcast> podcastsToBeReturned;
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
-                using (FileStream inFile = new FileStream("Podcasts.xml", FileMode.Open, FileAccess.Read))
+            
+            
+                try
                 {
-                    podcastsToBeReturned = (List<Podcast>)xmlSerializer.Deserialize(inFile);
-                }
-                return podcastsToBeReturned;
 
-            }
-            catch (Exception)
-            {
-                throw new SerializerException("Podcasts.xml", "Didn't work..");
-            }
+                    List<Podcast> podcastsToBeReturned;
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
+                    using (FileStream inFile = new FileStream("Podcasts.xml", FileMode.Open, FileAccess.Read))
+                    {
+                        podcastsToBeReturned = (List<Podcast>)xmlSerializer.Deserialize(inFile);
+                    }
+                    return podcastsToBeReturned;
+
+                }
+                catch (Exception)
+                {
+                    throw new SerializerException("Podcasts.xml", "Didn't work..");
+                }
+            
+            
         }
 
         public void SerializeCategory(List<Category> categories)
         {
-            try
+            if (!DALValidation.IsFileExisting(Path.GetFullPath(Path.Combine(pathCategories, @"..\"))))
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(categories.GetType());
-                using (FileStream outFile = new FileStream("Categories.xml", FileMode.Create, FileAccess.Write))
+
+                try
                 {
-                    xmlSerializer.Serialize(outFile, categories);
+                    XmlSerializer xmlSerializer = new XmlSerializer(categories.GetType());
+                    using (FileStream outFile = new FileStream("Categories.xml", FileMode.Create, FileAccess.Write))
+                    {
+                        xmlSerializer.Serialize(outFile, categories);
+                    }
+                }
+                catch (Exception)
+                {
+                    throw new SerializerException("Categories.xml", "Could not serialize!");
                 }
             }
-            catch (Exception)
-            {
-                throw new SerializerException("Categories.xml", "Could not serialize!");
-            }
+            else { MessageBox.Show("Hittar inte filen Categories.xml!"); }
         }
 
         public List<Category> DeserializeCategory()
