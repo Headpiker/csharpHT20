@@ -148,20 +148,6 @@ namespace Grupp9
             }
         }
 
-        private void clbKategorier_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            if (!clbKategorier.GetItemChecked(e.Index))
-            {
-                string vald = clbKategorier.SelectedItem.ToString();
-                tbValdKategori.Text = vald;
-            }
-            else
-            {
-                tbValdKategori.Text = "";
-            }
-
-        }
-
         private void btnTaBortKategori_Click(object sender, EventArgs e)
         {
             string category = tbValdKategori.Text;
@@ -262,10 +248,59 @@ namespace Grupp9
 
         private void clbKategorier_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (clbKategorier.SelectedItems.Count == 1) 
-            { 
+            if (clbKategorier.CheckedItems.Count == 1)
+            {
                 string category = clbKategorier.SelectedItem.ToString();
                 tbValdKategori.Text = category;
+                tbValdKategori.ReadOnly = true;
+                btnNyKategori.Enabled = false;
+                btnUppdateraKategori.Enabled = true;
+                btnTaBortKategori.Enabled = true;
+            }
+            else
+            {
+                tbValdKategori.Text = "";
+                tbValdKategori.ReadOnly = false;
+                btnNyKategori.Enabled = true;
+                btnUppdateraKategori.Enabled = false;
+                btnTaBortKategori.Enabled = false;
+            }
+            if(clbKategorier.CheckedItems.Count >= 1)
+            {
+                List<string> selectedValues = clbKategorier.CheckedItems.OfType<string>().ToList();
+                List<Podcast> filteredPodcasts = categoryController.FilterPodcasts(selectedValues);
+                DisplayFilteredPodcasts(filteredPodcasts);
+            }
+            else
+            {
+                displayPodcasts();
+            }
+        }
+
+        //Obs! "Dubbelkod", nästan exakt samma som DisplayPodcasts, ska snyggas till!
+        private void DisplayFilteredPodcasts(List<Podcast> filteredPodcasts)
+        {
+            lvPodcasts.Items.Clear();
+
+            foreach (var item in filteredPodcasts)
+            {
+                if (item != null)
+                {
+                    string numberOfEpisodes = item.Episodes.Count().ToString();
+                    ListViewItem newList = new ListViewItem(item.Title);
+                    newList.SubItems.Add(numberOfEpisodes);                      //Antal är hårdkodat just nu
+                    newList.SubItems.Add(item.UpdateInterval.ToString());
+                    newList.SubItems.Add(item.Category);
+                    lvPodcasts.Items.Add(newList);
+                }
+            }
+            foreach (ListViewItem items in lvPodcasts.Items)
+            {
+
+                if ((items.Index % 2) == 0)
+                {
+                    items.BackColor = Color.FromArgb(240, 240, 240);
+                }
             }
         }
 
