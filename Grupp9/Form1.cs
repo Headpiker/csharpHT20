@@ -91,7 +91,7 @@ namespace Grupp9
 
             else
             {
-                MessageBox.Show("Du måste skriva in en ett kategorinamn i fältet för att kunna lägga till en ny kategori!");
+                MessageBox.Show("Du måste skriva in något i fältet!");
             }
         }
 
@@ -144,9 +144,9 @@ namespace Grupp9
         }
         private void displayUpdateInterval()
         {
-            cbFrekvens.Items.Add("1");
-            cbFrekvens.Items.Add("5");
-            cbFrekvens.Items.Add("10");
+            cbFrekvens.Items.Add("100");
+            cbFrekvens.Items.Add("500");
+            cbFrekvens.Items.Add("600");
             cbFrekvens.SelectedIndex = 0;
         }
 
@@ -180,23 +180,16 @@ namespace Grupp9
         {
             string category = tbValdKategori.Text;
 
-            if (category != "")
+            //MessageBox för att låta användaren säkerställa att kategorin med tillhörande podcasts ska tas bort
+            DialogResult result = MessageBox.Show("Är du säker på att du vill radera kategorin " + category + " ? \n Alla podcasts som tillhör kategorin kommer att raderas!", "Radera kategori med tiihörande podcasts", MessageBoxButtons.YesNoCancel);
+            if (result == DialogResult.Yes)
             {
-                //MessageBox för att låta användaren säkerställa att kategorin med tillhörande podcasts ska tas bort
-                DialogResult result = MessageBox.Show("Är du säker på att du vill radera kategorin " + category + " ? \n Alla podcasts som tillhör kategorin kommer att raderas!", "Radera kategori med tiihörande podcasts", MessageBoxButtons.YesNoCancel);
-                if (result == DialogResult.Yes)
-                {
-                    categoryController.DeleteCategory(category);
-                    displayCategories();
-                    displayPodcasts();
-                    tbValdKategori.Clear();
-                    ClearTxtNameAndUrl();
-                    ClearEpisodeInfo();
-                } 
-            }
-            else
-            {
-                MessageBox.Show("Välj en kategori för att ta bort den!");
+                categoryController.DeleteCategory(category);
+                displayCategories();
+                displayPodcasts();
+                tbValdKategori.Clear();
+                ClearTxtNameAndUrl();
+                ClearEpisodeInfo();
             }
         }
 
@@ -215,10 +208,6 @@ namespace Grupp9
                     ClearTxtNameAndUrl();
                     ClearEpisodeInfo();
                 }
-            }
-            else
-            {
-                MessageBox.Show("Du måste välja en podcast för att kunna ta bort den!");
             }
         }
 
@@ -241,7 +230,7 @@ namespace Grupp9
             }
             else
             {
-                MessageBox.Show("Du måste välja en podcast för kunna uppdatera den!");
+                Console.WriteLine("Vänligen välj en podcast att uppdatera");
             }
         }
 
