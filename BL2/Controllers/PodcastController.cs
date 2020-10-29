@@ -71,11 +71,13 @@ namespace BL.Controllers
             List<Podcast> podcasts = GetAllPodcasts();
             foreach (var item in podcasts)
             {
-                string podcastUrl = item.Url;
-                List<Episode> episodes = episodeRepository.GetEpisodesFromRSS(podcastUrl);
-
-                //If-statement som kollar om uppdateringar finns bör finnas här.
-                item.Episodes = episodes;
+                if (item.NeedsUpdate)
+                {
+                    item.Update();
+                    string podcastUrl = item.Url;
+                    List<Episode> episodes = episodeRepository.GetEpisodesFromRSS(podcastUrl);
+                    item.Episodes = episodes;
+                }
             }
             podcastRepository.SaveUpdates(podcasts);
         }
