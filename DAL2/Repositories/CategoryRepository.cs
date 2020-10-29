@@ -64,22 +64,10 @@ namespace DAL.Repositories
             Save();
         }
 
-        public void Rename(int index, string newTitle, List<Podcast> podcastsOfCategory)
+        public void Rename(int index, string newTitle) //Ändrar kategorins titel
         {
             Category category = categoryList.ElementAt(index);
             category.Title = newTitle;
-            PodcastRepository podcastRepository = new PodcastRepository();
-            foreach (Podcast podcast in podcastsOfCategory)
-            {
-                Podcast pod = new Podcast();
-                pod.Title = podcast.Title;
-                pod.UpdateInterval = podcast.UpdateInterval;
-                pod.Episodes = podcast.Episodes;
-                pod.Url = podcast.Url;
-                pod.Category = newTitle;
-                int i = podcastRepository.GetIndex(pod.Title.ToString());
-                podcastRepository.Update(i, pod);
-            }
             Save();
         }
 
@@ -88,7 +76,8 @@ namespace DAL.Repositories
             PodcastRepository podcastRepository = new PodcastRepository();
             List<Podcast> allPodcasts = podcastRepository.GetAll();
             List<Podcast> filteredPodcasts = new List<Podcast>();
-            foreach (string category in categoriesToFilterBy)
+            foreach (string category in categoriesToFilterBy) /*Går genom alla kategorier som är "checkade" och lägger till
+                                                               *alla podcasts av de kategorierna i den nya listan*/
             {
                 filteredPodcasts.AddRange(allPodcasts.Where(x => x.Category.Contains(category)));
             }
