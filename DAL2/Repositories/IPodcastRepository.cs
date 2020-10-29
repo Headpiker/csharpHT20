@@ -13,6 +13,7 @@ namespace DAL.Repositories
         Podcast GetTitle(string title);
 
         void SaveUpdates(List<Podcast> podcasts);
-
+        void DeleteOfCategory(string category);
+        void RenameCategoryOfPodcast(string category, string newCategory);
     }
 }
