@@ -144,9 +144,9 @@ namespace Grupp9
         }
         private void displayUpdateInterval()
         {
-            cbFrekvens.Items.Add("100");
-            cbFrekvens.Items.Add("500");
-            cbFrekvens.Items.Add("600");
+            cbFrekvens.Items.Add("1");
+            cbFrekvens.Items.Add("5");
+            cbFrekvens.Items.Add("10");
             cbFrekvens.SelectedIndex = 0;
         }
 
@@ -218,7 +218,7 @@ namespace Grupp9
             }
             else
             {
-                MessageBox.Show("Du måste välja en podcast för att kunna ta bort den.");
+                MessageBox.Show("Du måste välja en podcast för att kunna ta bort den!");
             }
         }
 
@@ -241,7 +241,7 @@ namespace Grupp9
             }
             else
             {
-                MessageBox.Show("Du måste välja en podcast för kunna uppdatera den.");
+                MessageBox.Show("Du måste välja en podcast för kunna uppdatera den!");
             }
         }
 
