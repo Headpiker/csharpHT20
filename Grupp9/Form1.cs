@@ -1,4 +1,5 @@
-﻿using BL.Controllers;
+﻿using BL;
+using BL.Controllers;
 using Microsoft.VisualBasic;
 using Models;
 using System;
@@ -20,7 +21,9 @@ namespace Grupp9
     {
         PodcastController podcastController;
         CategoryController categoryController;
-        EpisodeController episodeController;
+        EpisodeController episodeController;        
+
+        
         private Timer timer = new Timer();
         public Form1()
         {
@@ -51,20 +54,45 @@ namespace Grupp9
 
         private void btnNyPodd_Click(object sender, EventArgs e)
         {
-            string category = this.cbKategori.GetItemText(this.cbKategori.SelectedItem);
-            string updateIntervalString = this.cbFrekvens.GetItemText(this.cbFrekvens.SelectedItem);
-            int updateInterval = Convert.ToInt32(updateIntervalString);
-            podcastController.CreatePodcastObject(txtPoddNamn.Text.ToString(), txtUrl.Text.ToString(), category, updateInterval);
-            displayPodcasts();
-            ClearTxtNameAndUrl();
-            ClearEpisodeInfo();
+            if (!Validation.IsFieldNullOrEmpty(txtPoddNamn.Text) || !Validation.IsFieldNullOrWhitespace(txtPoddNamn.Text))
+            {
+                if (Validation.IsUrlValid(txtUrl.Text))
+                {                   
+                        try
+                        {
+                            string category = this.cbKategori.GetItemText(this.cbKategori.SelectedItem);
+                            string updateIntervalString = this.cbFrekvens.GetItemText(this.cbFrekvens.SelectedItem);
+                            int updateInterval = Convert.ToInt32(updateIntervalString);
+                            podcastController.CreatePodcastObject(txtPoddNamn.Text.ToString(), txtUrl.Text.ToString(), category, updateInterval);
+                            displayPodcasts();
+                            ClearTxtNameAndUrl();
+                            ClearEpisodeInfo();
+
+                        }
+                        catch (Exception ex) { MessageBox.Show(ex.Message); }
+                    
+                }
+                else { MessageBox.Show("Se till att URL är korrekt ifylld!");}
+            }
+            else { MessageBox.Show("Du måste skriva i ett namn!");}
+            
+            
+            
+            
         }
 
         private void btnNyKategori_Click(object sender, EventArgs e)
         {
-            categoryController.CreateCategoryObject(tbValdKategori.Text);
-            displayCategories();
-            tbValdKategori.Clear();
+            if (!Validation.IsFieldNullOrEmpty(tbValdKategori.Text) || !Validation.IsFieldNullOrWhitespace(tbValdKategori.Text))
+            {
+                categoryController.CreateCategoryObject(tbValdKategori.Text);
+                displayCategories();
+                tbValdKategori.Clear(); }
+
+            else
+            {
+                MessageBox.Show("Du måste skriva in något i fältet!");
+            }
         }
         private void displayPodcasts()
         {
