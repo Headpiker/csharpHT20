@@ -47,6 +47,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\EpisodeController.cs" />
     <Compile Include="Controllers\PodcastController.cs" />
+    <Compile Include="ExceptionKategori.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

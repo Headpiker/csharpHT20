@@ -7,13 +7,14 @@ using System.Net.Http;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using DAL.Repositories;
+using DAL2;
 using System.Dynamic;
 using System.Windows.Forms;
 
 namespace BL.Controllers
 {
     public class PodcastController
-    {
+    {        
         private IPodcastRepository<Podcast> podcastRepository;
         private EpisodeRepository episodeRepository;
 
@@ -22,10 +23,14 @@ namespace BL.Controllers
             podcastRepository = new PodcastRepository();
             episodeRepository = new EpisodeRepository();
         }
+
+        
         public void CreatePodcastObject(string title, string url, string category, int updateInterval)
         {
-            if (Validation.IsUrlValid(url))
+            if (Validation.IsUrlValid(url) && Validation.UrlContainsRSS(url))
             {
+                
+
                 List<Episode> episodes = episodeRepository.GetEpisodesFromRSS(url);
                 Podcast podcast = new Podcast(title, url, category, updateInterval, episodes);
                 podcastRepository.Create(podcast);
