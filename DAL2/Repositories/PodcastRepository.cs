@@ -35,6 +35,19 @@ namespace DAL.Repositories
             Save();
         }
 
+        public void DeleteOfCategory(string category) //Raderar alla podcasts av angiven kategori
+        {
+            podcastList.RemoveAll(podcast => podcast.Category == category);
+            Save();
+        }
+
+        //Uppdaterar kategori på alla podcasts av den angivna kategorin efter att användaren bytt namn på kategorin. 
+        public void RenameCategoryOfPodcast(string category, string newCategory)
+        {
+            podcastList.Where(podcast => podcast.Category == category).ToList().ForEach(podcast => podcast.Category = newCategory);
+            Save();
+        }
+
         public int GetIndex (string title)
         {
             return GetAll().FindIndex(a => a.Title.Equals(title));

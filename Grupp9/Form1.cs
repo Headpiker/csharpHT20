@@ -94,6 +94,7 @@ namespace Grupp9
                 MessageBox.Show("Du måste skriva in något i fältet!");
             }
         }
+
         private void displayPodcasts()
         {
             lvPodcasts.Items.Clear();
@@ -159,8 +160,7 @@ namespace Grupp9
                 string newTitel = Interaction.InputBox("Skriv in ett nytt namn på kategorin " + title + " för att byta namn.", "Uppdatera kategori", "", 500, 300);
                 if (newTitel != "")
                 {
-                    List<Podcast> podcasts = podcastController.GetAllPodcasts();
-                    categoryController.RenameCategory(title, newTitel, podcasts);
+                    categoryController.RenameCategory(title, newTitel);
                     displayCategories();
                     displayPodcasts();
                     tbValdKategori.Text = "";
@@ -179,6 +179,8 @@ namespace Grupp9
         private void btnTaBortKategori_Click(object sender, EventArgs e)
         {
             string category = tbValdKategori.Text;
+
+            //MessageBox för att låta användaren säkerställa att kategorin med tillhörande podcasts ska tas bort
             DialogResult result = MessageBox.Show("Är du säker på att du vill radera kategorin " + category + " ? \n Alla podcasts som tillhör kategorin kommer att raderas!", "Radera kategori med tiihörande podcasts", MessageBoxButtons.YesNoCancel);
             if (result == DialogResult.Yes)
             {
@@ -186,6 +188,8 @@ namespace Grupp9
                 displayCategories();
                 displayPodcasts();
                 tbValdKategori.Clear();
+                ClearTxtNameAndUrl();
+                ClearEpisodeInfo();
             }
         }
 
@@ -195,6 +199,7 @@ namespace Grupp9
             {
                 string title = lvPodcasts.SelectedItems[0].Text;
             
+                //MessageBox för att låta användaren säkerställa att podcasten ska tas bort
                 DialogResult result = MessageBox.Show("Vill du ta bort podcasten '" + title + "'?", "Warning", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
