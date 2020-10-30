@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ServiceModel.Syndication;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace DAL.Repositories
@@ -19,10 +20,10 @@ namespace DAL.Repositories
             
         }
 
-        public List<Episode> GetEpisodesFromRSS(string url)
+        public async Task<List<Episode>> GetEpisodesFromRSS(string url)
         {
             XmlReader rssReader = XmlReader.Create(url);
-            SyndicationFeed rssFeed = SyndicationFeed.Load(rssReader);
+            SyndicationFeed rssFeed = await Task.Run(() => SyndicationFeed.Load(rssReader));
 
             List<Episode> episodes = new List<Episode>();
             foreach (SyndicationItem item in rssFeed.Items)

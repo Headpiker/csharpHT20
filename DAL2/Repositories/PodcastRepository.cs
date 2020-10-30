@@ -88,7 +88,7 @@ namespace DAL.Repositories
             Save();
         }
 
-        public void SaveUpdates(List<Podcast> podcast)
+        public void Save(List<Podcast> podcast)
         {
             dataManager.SerializePodcast(podcast);
         }

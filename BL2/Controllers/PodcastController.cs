@@ -22,11 +22,11 @@ namespace BL.Controllers
             podcastRepository = new PodcastRepository();
             episodeRepository = new EpisodeRepository();
         }
-        public void CreatePodcastObject(string title, string url, string category, int updateInterval)
+        public async void CreatePodcastObject(string title, string url, string category, int updateInterval)
         {
             if (Validation.IsUrlValid(url))
             {
-                List<Episode> episodes = episodeRepository.GetEpisodesFromRSS(url);
+                List<Episode> episodes = await episodeRepository.GetEpisodesFromRSS(url);
                 Podcast podcast = new Podcast(title, url, category, updateInterval, episodes);
                 podcastRepository.Create(podcast);
             }
@@ -56,17 +56,17 @@ namespace BL.Controllers
             return url;
         }
 
-        public void UpdatePodcastObject(string title, string url, string category, int updateInterval, int index)
+        public async void UpdatePodcastObject(string title, string url, string category, int updateInterval, int index)
         {
             if (Validation.IsUrlValid(url))
             {
-                List<Episode> episodes = episodeRepository.GetEpisodesFromRSS(url);
+                List<Episode> episodes = await episodeRepository.GetEpisodesFromRSS(url);
                 Podcast podcast = new Podcast(title, url, category, updateInterval, episodes);
                 podcastRepository.Update(index, podcast);
             }
         }
 
-        public void UpdateEpisodes()
+        public async void UpdateEpisodes()
         {
             List<Podcast> podcasts = GetAllPodcasts();
             foreach (var item in podcasts)
@@ -75,11 +75,11 @@ namespace BL.Controllers
                 {
                     item.Update();
                     string podcastUrl = item.Url;
-                    List<Episode> episodes = episodeRepository.GetEpisodesFromRSS(podcastUrl);
+                    List<Episode> episodes = await episodeRepository.GetEpisodesFromRSS(podcastUrl);
                     item.Episodes = episodes;
                 }
             }
-            podcastRepository.SaveUpdates(podcasts);
+            podcastRepository.Save(podcasts);
         }
     }
 }
