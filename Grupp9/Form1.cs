@@ -64,7 +64,7 @@ namespace Grupp9
                             string updateIntervalString = this.cbFrekvens.GetItemText(this.cbFrekvens.SelectedItem);
                             int updateInterval = Convert.ToInt32(updateIntervalString);
                             podcastController.CreatePodcastObject(txtPoddNamn.Text.ToString(), txtUrl.Text.ToString(), category, updateInterval);
-                            displayPodcasts();
+                            Delay();
                             ClearTxtNameAndUrl();
                             ClearEpisodeInfo();
 
@@ -74,11 +74,13 @@ namespace Grupp9
                 }
                 else { MessageBox.Show("Se till att URL är korrekt ifylld!");}
             }
-            else { MessageBox.Show("Du måste skriva i ett namn!");}
-            
-            
-            
-            
+            else { MessageBox.Show("Du måste skriva i ett namn!");} 
+        }
+
+        async Task Delay()
+        {
+            await Task.Delay(300);
+            displayPodcasts();
         }
 
         private void btnNyKategori_Click(object sender, EventArgs e)
@@ -234,7 +236,7 @@ namespace Grupp9
                 int updateInterval = Convert.ToInt32(updateIntervalString);
 
                 podcastController.UpdatePodcastObject(txtPoddNamn.Text.ToString(), txtUrl.Text.ToString(), category, updateInterval, index);
-                displayPodcasts();
+                Delay();
                 ClearTxtNameAndUrl();
                 ClearEpisodeInfo();
 
