@@ -1,11 +1,7 @@
 ﻿
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Models;
 using DAL.Repositories;
-using System.Windows.Forms;
-
 namespace BL.Controllers
 {
     public class CategoryController
@@ -20,24 +16,15 @@ namespace BL.Controllers
 
         public void CreateCategoryObject(string title)
         {
-            try {
-                Category category = new Category(title);
-                categoryRepository.Create(category);
-            }
-            catch (Exception ex) { MessageBox.Show("Något gick fel, pröva igen!" + "\n" + ex.Message); }
-
+            Category category = new Category(title);
+            categoryRepository.Create(category);
         }
 
         public void DeleteCategory(string title) //Raderar kategori med tillhörande podcasts
         {
-            try
-            {
-                int index = categoryRepository.GetIndex(title);
-                categoryRepository.Delete(index);
-                podcastRepository.DeleteOfCategory(title);
-            }
-            catch (Exception ex) { MessageBox.Show("Något gick fel, pröva igen!" + "\n" + ex.Message); }
-
+            int index = categoryRepository.GetIndex(title);
+            categoryRepository.Delete(index);
+            podcastRepository.DeleteOfCategory(title);
         }
 
         public List<Category> GetAllCategories()
@@ -47,14 +34,9 @@ namespace BL.Controllers
 
         public void RenameCategory(string title, string newTitle)
         {
-            try
-            {
-                int index = categoryRepository.GetIndex(title);
-                categoryRepository.Rename(index, newTitle);
-                podcastRepository.RenameCategoryOfPodcast(title, newTitle); //Anrop för att uppdatera kategori på podcasts
-            }
-            catch (Exception ex) { MessageBox.Show("Något gick fel, pröva igen!" + "\n" + ex.Message); }
-
+            int index = categoryRepository.GetIndex(title);
+            categoryRepository.Rename(index, newTitle);
+            podcastRepository.RenameCategoryOfPodcast(title, newTitle); //Anrop för att uppdatera kategori på podcasts
         }
 
         /*Tar en lista av strings dvs de valda kategoriernas titlar som parameter som skickas med som parameter

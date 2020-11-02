@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using Models;
 
 namespace DAL.Repositories
@@ -15,7 +16,7 @@ namespace DAL.Repositories
         {
             podcastList = new List<Podcast>();
             dataManager = new DataManager();
-            podcastList = GetList();
+            podcastList = GetAll();
         }
 
         public void Save()
@@ -61,22 +62,15 @@ namespace DAL.Repositories
         public List<Podcast> GetAll()
         {
             List<Podcast> podcasts = new List<Podcast>();
-            podcasts = dataManager.DeserializePodcast();
-            return podcasts;
-        }
-
-        public List<Podcast> GetList()
-        {
-            List<Podcast> podcastList = new List<Podcast>();
             try
             {
-                podcastList = dataManager.DeserializePodcast();
+                podcasts = dataManager.DeserializePodcast();
             }
-            catch (Exception ex)
+            catch (SerializerException e)
             {
-                Console.WriteLine(ex.Message + "Kunde inte hämta podcasts");
+                Console.WriteLine(e.Message);
             }
-            return podcastList;
+            return podcasts;
         }
 
         public void Update(int index, Podcast newPodcast)
