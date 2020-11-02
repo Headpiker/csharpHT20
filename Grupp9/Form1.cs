@@ -1,5 +1,4 @@
 ﻿using BL;
-using DAL;
 using BL.Controllers;
 using Microsoft.VisualBasic;
 using Models;
@@ -9,7 +8,6 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DAL.Repositories;
 
 namespace Grupp9
 {
@@ -17,8 +15,7 @@ namespace Grupp9
     {
         PodcastController podcastController;
         CategoryController categoryController;
-        EpisodeController episodeController;
-        CategoryRepository categoryRepository;
+        EpisodeController episodeController;        
 
         
         private Timer timer = new Timer(); //Timer för uppdateringsfrekvensen
@@ -87,9 +84,7 @@ namespace Grupp9
         }
 
         private void btnNyKategori_Click(object sender, EventArgs e)
-        {
-            string checkKategori = tbValdKategori.Text;
-            string arrayOfCategory = CategoryRepository.getIndex();
+        {            
             try
             {
                 

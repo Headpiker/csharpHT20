@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace BL
 {
@@ -17,6 +18,10 @@ namespace BL
         public static bool IsFieldNullOrWhitespace(string emptyWhitespace)
         {
             return String.IsNullOrWhiteSpace(emptyWhitespace) ? true : false;
+        }
+        public static bool IsDuplicate(string newContent, string[] content)
+        {
+            return content.Any((g) => String.Equals(g, newContent, StringComparison.OrdinalIgnoreCase));
         }
     }
 }
