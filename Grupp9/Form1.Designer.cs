@@ -50,7 +50,7 @@
             this.btnTaBortKategori = new System.Windows.Forms.Button();
             this.txtPoddNamn = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.tbValdKategori = new System.Windows.Forms.TextBox();
             this.lbKategorier = new System.Windows.Forms.ListBox();
             this.clbKategorier = new System.Windows.Forms.CheckedListBox();
@@ -267,15 +267,15 @@
             this.label5.TabIndex = 21;
             this.label5.Text = "Namn:";
             // 
-            // label6
+            // lblTitle
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(18, 474);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(88, 20);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "Podcast # :";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Location = new System.Drawing.Point(18, 474);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(88, 20);
+            this.lblTitle.TabIndex = 22;
+            this.lblTitle.Text = "Podcast # :";
             // 
             // tbValdKategori
             // 
@@ -321,7 +321,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.clbKategorier);
             this.Controls.Add(this.tbValdKategori);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtPoddNamn);
             this.Controls.Add(this.btnTaBortKategori);
@@ -343,7 +343,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Prenumerera på dina favoritpodcasts";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -369,7 +368,7 @@
         private System.Windows.Forms.Button btnTaBortKategori;
         private System.Windows.Forms.TextBox txtPoddNamn;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.ColumnHeader columnAntalAvsnitt;
         private System.Windows.Forms.ColumnHeader columnHeaderTitel;
         private System.Windows.Forms.ColumnHeader columnHeaderFrekvens;
