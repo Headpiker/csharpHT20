@@ -24,12 +24,17 @@ namespace BL.Controllers
         }
         public async void CreatePodcastObject(string title, string url, string category, int updateInterval)
         {
-            if (Validation.IsUrlValid(url))
+            try
             {
-                List<Episode> episodes = await episodeRepository.GetEpisodesFromRSS(url);
-                Podcast podcast = new Podcast(title, url, category, updateInterval, episodes);
-                podcastRepository.Create(podcast);
+
+                if (Validation.IsUrlValid(url))
+                {
+                    List<Episode> episodes = await episodeRepository.GetEpisodesFromRSS(url);
+                    Podcast podcast = new Podcast(title, url, category, updateInterval, episodes);
+                    podcastRepository.Create(podcast);
+                }
             }
+            catch (Exception ex) { MessageBox.Show("Något gick fel, pröva igen!" + "\n" + ex.Message);}
         }
 
         public List<Podcast> GetAllPodcasts()
