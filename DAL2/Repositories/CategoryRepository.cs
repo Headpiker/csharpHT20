@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 
 namespace DAL.Repositories
 {
@@ -43,9 +41,9 @@ namespace DAL.Repositories
             {
                 categoryList = dataManager.DeserializeCategory();
             }
-            catch (Exception ex)
+            catch (SerializerException e)
             {
-                Console.WriteLine(ex.Message + "Kunde inte hämta kategorier");
+                Console.WriteLine(e.Message);
             }
             return categoryList;
         }
@@ -53,15 +51,6 @@ namespace DAL.Repositories
         public void Save()
         {
             dataManager.SerializeCategory(categoryList);
-        }
-
-        public void Update(int index, Category category)
-        {
-            if (index >= 0)
-            {
-                categoryList[index] = category;
-            }
-            Save();
         }
 
         public void Rename(int index, string newTitle) //Ändrar kategorins titel

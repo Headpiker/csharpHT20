@@ -3,65 +3,56 @@ using Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace DAL
 {
-
     public class DataManager
     {
         string pathPodcasts = @".\Grupp9\bin\Debug\Podcasts.xml";
         string pathCategories = @".\Grupp9\bin\Debug\Categories.xml";
+
         public void SerializePodcast(List<Podcast> podcasts)
         {
-            if (!DALValidation.IsFileExisting(Path.GetFullPath(Path.Combine(pathPodcasts, @"..\")))) { 
-
-            try
+            if (!DALValidation.IsFileExisting(Path.GetFullPath(Path.Combine(pathPodcasts, @"..\")))) 
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(podcasts.GetType());
-                using (FileStream Outfile = new FileStream("Podcasts.xml", FileMode.Create, FileAccess.Write))
+                try
                 {
-                    xmlSerializer.Serialize(Outfile, podcasts);
+                    XmlSerializer xmlSerializer = new XmlSerializer(podcasts.GetType());
+                    using (FileStream Outfile = new FileStream("Podcasts.xml", FileMode.Create, FileAccess.Write))
+                    {
+                        xmlSerializer.Serialize(Outfile, podcasts);
+                    }
+                }
+                catch (Exception)
+                {
+                    throw new SerializerException("Podcasts.xml", "Kunde inte serialisera..");
                 }
             }
-            catch (Exception)
-            {
-                throw new SerializerException("Podcasts.xml", "Didn't work");
-            }
-            }
-            else { MessageBox.Show("Hittar inte filen Podcasts.xml!");}
         }
 
         public List<Podcast> DeserializePodcast()
         {
-            
-            
-                try
+            try
+            {
+                List<Podcast> podcastsToBeReturned;
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
+                using (FileStream inFile = new FileStream("Podcasts.xml", FileMode.Open, FileAccess.Read))
                 {
-
-                    List<Podcast> podcastsToBeReturned;
-                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Podcast>));
-                    using (FileStream inFile = new FileStream("Podcasts.xml", FileMode.Open, FileAccess.Read))
-                    {
-                        podcastsToBeReturned = (List<Podcast>)xmlSerializer.Deserialize(inFile);
-                    }
-                    return podcastsToBeReturned;
-
+                    podcastsToBeReturned = (List<Podcast>)xmlSerializer.Deserialize(inFile);
                 }
-                catch (Exception)
-                {
-                    throw new SerializerException("Podcasts.xml", "Didn't work..");
-                }
-            
-            
+                return podcastsToBeReturned;
+            }
+            catch (Exception)
+            {
+                throw new SerializerException("Podcasts.xml", "Kunde inte deserialisera..");
+            }
         }
 
         public void SerializeCategory(List<Category> categories)
         {
             if (!DALValidation.IsFileExisting(Path.GetFullPath(Path.Combine(pathCategories, @"..\"))))
             {
-
                 try
                 {
                     XmlSerializer xmlSerializer = new XmlSerializer(categories.GetType());
@@ -72,10 +63,9 @@ namespace DAL
                 }
                 catch (Exception)
                 {
-                    throw new SerializerException("Categories.xml", "Could not serialize!");
+                    throw new SerializerException("Categories.xml", "Kunde inte serialisera..");
                 }
             }
-            else { MessageBox.Show("Hittar inte filen Categories.xml!"); }
         }
 
         public List<Category> DeserializeCategory()
@@ -92,7 +82,7 @@ namespace DAL
             }
             catch (Exception)
             {
-                throw new SerializerException("Categories.xml", "Could not deserialize!");
+                throw new SerializerException("Categories.xml", "Kunde inte deserialisera..");
             }
         }
     }

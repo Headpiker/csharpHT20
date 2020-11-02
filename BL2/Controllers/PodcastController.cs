@@ -1,14 +1,6 @@
-﻿using System;
-using Models;
-using System.Threading.Tasks;
-using System.Xml;
+﻿using Models;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Linq;
-using System.ServiceModel.Syndication;
 using DAL.Repositories;
-using System.Dynamic;
-using System.Windows.Forms;
 
 namespace BL.Controllers
 {
@@ -24,22 +16,14 @@ namespace BL.Controllers
         }
         public async void CreatePodcastObject(string title, string url, string category, int updateInterval)
         {
-            try
-            {
-
-                if (Validation.IsUrlValid(url))
-                {
-                    List<Episode> episodes = await episodeRepository.GetEpisodesFromRSS(url);
-                    Podcast podcast = new Podcast(title, url, category, updateInterval, episodes);
-                    podcastRepository.Create(podcast);
-                }
-            }
-            catch (Exception ex) { MessageBox.Show("Något gick fel, pröva igen!" + "\n" + ex.Message);}
+            List<Episode> episodes = await episodeRepository.GetEpisodesFromRSS(url);
+            Podcast podcast = new Podcast(title, url, category, updateInterval, episodes);
+            podcastRepository.Create(podcast);
         }
 
         public List<Podcast> GetAllPodcasts()
         {
-            return podcastRepository.GetList();
+            return podcastRepository.GetAll();
         }
 
         public void DeletePodcast(string title)
@@ -63,36 +47,26 @@ namespace BL.Controllers
 
         public async void UpdatePodcastObject(string title, string url, string category, int updateInterval, int index)
         {
-            try
-            {
-                if (Validation.IsUrlValid(url))
-                {
-                    List<Episode> episodes = await episodeRepository.GetEpisodesFromRSS(url);
-                    Podcast podcast = new Podcast(title, url, category, updateInterval, episodes);
-                    podcastRepository.Update(index, podcast);
-                }
-            }
-            catch (Exception ex) { MessageBox.Show("Något gick fel, pröva igen!" + "\n" + ex.Message); }
+            List<Episode> episodes = await episodeRepository.GetEpisodesFromRSS(url);
+            Podcast podcast = new Podcast(title, url, category, updateInterval, episodes);
+            podcastRepository.Update(index, podcast);
         }
 
+        //Uppdaterar podcastavsnitt utifrån den uppdateringsfrekvens som angetts
         public async void UpdateEpisodes()
         {
-            try
+            List<Podcast> podcasts = GetAllPodcasts();
+            foreach (var item in podcasts)
             {
-                List<Podcast> podcasts = GetAllPodcasts();
-                foreach (var item in podcasts)
+                if (item.NeedsUpdate)
                 {
-                    if (item.NeedsUpdate)
-                    {
-                        item.Update();
-                        string podcastUrl = item.Url;
-                        List<Episode> episodes = await episodeRepository.GetEpisodesFromRSS(podcastUrl);
-                        item.Episodes = episodes;
-                    }
+                    item.Update();
+                    string podcastUrl = item.Url;
+                    List<Episode> episodes = await episodeRepository.GetEpisodesFromRSS(podcastUrl);
+                    item.Episodes = episodes;
                 }
-                podcastRepository.Save(podcasts);
             }
-            catch (Exception ex) { MessageBox.Show("Något gick fel, pröva igen!" + "\n" + ex.Message); }
+            podcastRepository.Save(podcasts);
         }
     }
 }
