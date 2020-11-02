@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Models;
 using DAL.Repositories;
 namespace BL.Controllers
@@ -40,7 +39,7 @@ namespace BL.Controllers
         }
 
         /*Tar en lista av strings dvs de valda kategoriernas titlar som parameter som skickas med som parameter
-         * till Filter metoden i categoryRepository. Metoden returnerar en lista med de podcasts som man filtrerat utifrån.*/
+          till Filter metoden i categoryRepository. Metoden returnerar en lista med de podcasts som man filtrerat utifrån.*/
         public List<Podcast> FilterPodcasts(List<string> categories) 
         {
             List<Podcast> filteredPodcasts = categoryRepository.Filter(categories);

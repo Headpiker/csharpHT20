@@ -19,7 +19,5 @@ namespace DAL
         {
             this.fileName = fileName;
         }
-
-
     }
 }

@@ -17,9 +17,9 @@ namespace DAL.Repositories
         {
             episodeList = new List<Episode>();
             dataManager = new DataManager();
-            
         }
 
+        //Hämtar alla avsnitt som finns i den url som används när man lägger till en ny podcast
         public async Task<List<Episode>> GetEpisodesFromRSS(string url)
         {
             XmlReader rssReader = XmlReader.Create(url);

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using BL.Controllers;
 using Models;
@@ -9,7 +8,6 @@ namespace BL
 {
     public class Validation
     {
-
         public static bool IsUrlValid(string url)
         {
             bool isUrlValid = url.StartsWith("https://") || url.StartsWith("http://");
@@ -26,7 +24,7 @@ namespace BL
             List<Podcast> podcasts = podcastController.GetAllPodcasts();
             bool isDuplicate = podcasts.Exists(podcast => podcast.Url == url);
 
-            if (isDuplicate == true)
+            if (isDuplicate)
             {
                 MessageBox.Show("Podcasten med denna url finns redan i din lista!");
             }
@@ -42,6 +40,7 @@ namespace BL
             }
             return isNullOrEmptyOrWhiteSpace;
         }
+
         public static bool IsCategoryDuplicate(string newContent)
         {
             CategoryController categoryController = new CategoryController();

@@ -52,6 +52,7 @@ namespace BL.Controllers
             podcastRepository.Update(index, podcast);
         }
 
+        //Uppdaterar podcastavsnitt utifrån den uppdateringsfrekvens som angetts
         public async void UpdateEpisodes()
         {
             List<Podcast> podcasts = GetAllPodcasts();

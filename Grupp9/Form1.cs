@@ -26,17 +26,18 @@ namespace Grupp9
             podcastController = new PodcastController();
             categoryController = new CategoryController();
             episodeController = new EpisodeController();
-            displayCategories();
-            displayUpdateInterval();
-            displayPodcasts(podcastController.GetAllPodcasts());
+            DisplayCategories();
+            DisplayUpdateInterval();
+            DisplayPodcasts(podcastController.GetAllPodcasts());
             EnabledButtonsForPodcast();
             EnabledButtonsForCategory();
 
             lvPodcasts.FullRowSelect = true;
+
+            //Startar timer och anger att timern ska köra varje sekund. 
             timer.Interval = 1000;
             timer.Tick += Timer_Tick;
             timer.Start();
-
         }
 
         private void EnabledButtonsForPodcast()
@@ -53,8 +54,10 @@ namespace Grupp9
             btnTaBortKategori.Enabled = false;
         }
 
+        //Detta event anropas varje sekund
         private void Timer_Tick(object sender, EventArgs e)
         {
+            //UpdateEspisode() kollar om avsnitt för podcasts behöver uppdateras utifrån dess uppdateringsfrekvens
             podcastController.UpdateEpisodes();
         }
 
@@ -78,10 +81,11 @@ namespace Grupp9
             }
         }
 
+        //Delay gör att programmet avvaktar inläsningen av alla podcasts för att avsnitten ska hinna hämtas innan podcasten visas.
         async Task Delay()
         {
             await Task.Delay(300);
-            displayPodcasts(podcastController.GetAllPodcasts());
+            DisplayPodcasts(podcastController.GetAllPodcasts());
 
             //Startar om applikationen
             System.Diagnostics.Process.Start(Application.ExecutablePath);
@@ -93,14 +97,14 @@ namespace Grupp9
             if (!Validation.IsFieldNullOrEmpty(tbValdKategori.Text) && !Validation.IsCategoryDuplicate(tbValdKategori.Text))
             {
                 categoryController.CreateCategoryObject(tbValdKategori.Text);
-                displayCategories();
+                DisplayCategories();
                 tbValdKategori.Clear();
             }
         }
 
         /*Metod för att visa podcasts i ListView, tar en parameter List<Podcast> för att specifisera vilken samling av
          * podcasts som ska visas dvs filtrerade eller alla */
-        private void displayPodcasts(List<Podcast> podcastsToDisplay) 
+        private void DisplayPodcasts(List<Podcast> podcastsToDisplay) 
         {
             lvPodcasts.Items.Clear();
 
@@ -126,7 +130,7 @@ namespace Grupp9
             }
         }
 
-        private void displayCategories()
+        private void DisplayCategories()
         {
             clbKategorier.Items.Clear();
             cbKategori.Items.Clear();
@@ -140,7 +144,7 @@ namespace Grupp9
             }
         }
 
-        private void displayUpdateInterval()
+        private void DisplayUpdateInterval()
         {
             cbFrekvens.Items.Add("5");
             cbFrekvens.Items.Add("10");
@@ -158,8 +162,8 @@ namespace Grupp9
                 if (!Validation.IsCategoryDuplicate(newTitel))
                 {
                     categoryController.RenameCategory(title, newTitel);
-                    displayCategories();
-                    displayPodcasts(podcastController.GetAllPodcasts());
+                    DisplayCategories();
+                    DisplayPodcasts(podcastController.GetAllPodcasts());
                     tbValdKategori.Clear();
 
                     //Startar om applikationen
@@ -177,9 +181,9 @@ namespace Grupp9
             if (result == DialogResult.Yes)
             {
                 categoryController.DeleteCategory(category);
-                displayCategories();
+                DisplayCategories();
                 EnabledButtonsForPodcast();
-                displayPodcasts(podcastController.GetAllPodcasts());
+                DisplayPodcasts(podcastController.GetAllPodcasts());
                 tbValdKategori.Clear();
                 ClearTxtNameAndUrl();
                 ClearEpisodeInfo();
@@ -199,7 +203,7 @@ namespace Grupp9
             if (result == DialogResult.Yes)
             {
                 podcastController.DeletePodcast(title);
-                displayPodcasts(podcastController.GetAllPodcasts());
+                DisplayPodcasts(podcastController.GetAllPodcasts());
                 ClearTxtNameAndUrl();
                 ClearEpisodeInfo();
                 EnabledButtonsForPodcast();
@@ -304,13 +308,13 @@ namespace Grupp9
             {
                 List<string> selectedValues = clbKategorier.CheckedItems.OfType<string>().ToList();
                 List<Podcast> filteredPodcasts = categoryController.FilterPodcasts(selectedValues);
-                displayPodcasts(filteredPodcasts);
+                DisplayPodcasts(filteredPodcasts);
                 ClearEpisodeInfo();
                 ClearTxtNameAndUrl();
             }
             else
             {
-                displayPodcasts(podcastController.GetAllPodcasts());
+                DisplayPodcasts(podcastController.GetAllPodcasts());
             }
         }
 
