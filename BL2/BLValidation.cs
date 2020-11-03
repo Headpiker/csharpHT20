@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using BL.Controllers;
+using BL2;
 using Models;
 
 namespace BL
@@ -10,25 +11,56 @@ namespace BL
     {
         public static bool IsUrlValid(string url)
         {
-            bool isUrlValid = url.StartsWith("https://") || url.StartsWith("http://");
-            if (!isUrlValid) 
+            try
             {
-                MessageBox.Show("Se till att URL är korrekt ifylld!");
+                bool isUrlValid = url.StartsWith("https://") || url.StartsWith("http://");
+                if (!isUrlValid)
+                {
+                    MessageBox.Show("Se till att URL är korrekt ifylld!");
+                }
+                return isUrlValid;
             }
-            return isUrlValid;
+            catch (Exception)
+            {
+                throw new URLException("Ogiltig url!");
+            }
+        }
+
+        public static bool UrlContainsRSS(string url)
+        {
+            try
+            {
+                bool isUrlValid = url.Contains("rss") || url.Contains("feed");
+                if (!isUrlValid)
+                {
+                   MessageBox.Show("Denna url innehåller ingen RSS, avsnitt går inte att hämta!");
+                }
+                return isUrlValid;
+            }
+            catch (Exception)
+            {
+                throw new URLException("Url innehöll ingen RSS!");
+            }
         }
 
         public static bool UrlExsists(string url)
         {
-            PodcastController podcastController = new PodcastController();
-            List<Podcast> podcasts = podcastController.GetAllPodcasts();
-            bool isDuplicate = podcasts.Exists(podcast => podcast.Url == url);
-
-            if (isDuplicate)
+            try
             {
-                MessageBox.Show("Podcasten med denna url finns redan i din lista!");
+                PodcastController podcastController = new PodcastController();
+                List<Podcast> podcasts = podcastController.GetAllPodcasts();
+                bool isDuplicate = podcasts.Exists(podcast => podcast.Url == url);
+
+                if (isDuplicate)
+                {
+                    MessageBox.Show("Podcasten med denna url finns redan i din lista!");
+                }
+                return isDuplicate;
             }
-            return isDuplicate;
+            catch (Exception)
+            {
+                throw new URLException("Podcasten finns redan!"); 
+            }
         }
 
         public static bool IsFieldNullOrEmpty (string emptyField)
