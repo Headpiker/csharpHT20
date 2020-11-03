@@ -65,7 +65,7 @@ namespace Grupp9
         {
             if (!Validation.IsFieldNullOrEmpty(cbKategori.Text.ToString()) && !Validation.IsFieldNullOrEmpty(txtPoddNamn.Text))
             {
-                if (Validation.IsUrlValid(txtUrl.Text) && !Validation.UrlExsists(txtUrl.Text))
+                if (Validation.IsUrlValid(txtUrl.Text) && !Validation.UrlExsists(txtUrl.Text) && Validation.UrlContainsRSS(txtUrl.Text))
                 {
                     if (!Validation.IsPodcastDuplicate(txtPoddNamn.Text))
                     {
